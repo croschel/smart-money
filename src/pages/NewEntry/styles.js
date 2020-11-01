@@ -1,21 +1,23 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const { width, height } = Dimensions.get('window')
+import {StyleSheet, Dimensions} from 'react-native';
+import colors from '~/styles/colors';
+const {width, height} = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
-    padding: 10
+    padding: 10,
+    backgroundColor: colors.background,
   },
   label: {
-    fontSize: 18
+    fontSize: 18,
   },
   value: {
-    fontSize: 22
+    fontSize: 22,
   },
   input: {
     borderColor: '#000',
     borderWidth: 1,
     width: width - 20,
-  }
-})
+  },
+});

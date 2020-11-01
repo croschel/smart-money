@@ -4,7 +4,7 @@ import {Ball} from '~/resources/svg';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '~/styles/colors';
 import styles from './styles';
-import {convertDateDetails} from '~/util';
+import {convertDateDetails, amountFormat} from '~/util';
 
 const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
   return (
@@ -40,7 +40,7 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
         </View>
       </View>
       <View style={styles.amount}>
-        <Text style={styles.amountText}>{entry.amount}</Text>
+        <Text style={styles.amountText}>{amountFormat(entry.amount)}</Text>
       </View>
     </TouchableOpacity>
   );
