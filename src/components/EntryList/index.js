@@ -44,7 +44,7 @@ const EntryList = ({onEntryPress, onPressActionButton}) => {
             entry={item}
             isFirstItem={checkBallFirstPosition(index)}
             isLastItem={checkBallLastPosition(index, entries.length)}
-            onEntryPress={onEntryPress}
+            onEntryPress={() => onEntryPress(item)}
           />
         )}
       />

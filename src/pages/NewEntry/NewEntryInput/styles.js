@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   debitButtonPrefix: {
     fontSize: 28,
     color: colors.white,
+    minWidth: 8,
   },
   debitButtonUnit: {
     fontSize: 28,
@@ -27,5 +28,7 @@ export const styles = StyleSheet.create({
     fontSize: 28,
     color: colors.white,
     textAlign: 'right',
+    paddingLeft: 0,
+    paddingRight: 24,
   },
 });
