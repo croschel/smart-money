@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '~/styles/colors';
+import metrics from '~/styles/metrics';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,7 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.asphalt,
     borderRadius: 16,
     marginHorizontal: 16,
-    marginVertical: 8,
+    width: metrics.width * 0.8,
   },
   debitButton: {
     flexDirection: 'row',
