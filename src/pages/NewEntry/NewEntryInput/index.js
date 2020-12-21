@@ -3,9 +3,11 @@ import {SafeAreaView, TouchableOpacity, Text} from 'react-native';
 import {TextInputMask} from 'react-native-masked-text';
 import {styles} from './styles';
 
-const NewEntryInput = ({value, onChangeValue}) => {
-  const [debit, setDebit] = useState(value < 0 ? -1 : 1);
-  const [debitPrefix, setDebitPrefix] = useState(value < 0 ? '-' : '');
+const NewEntryInput = (props) => {
+  const {value, onChangeValue, onChangeDebit} = props;
+
+  const [debit, setDebit] = useState(value <= 0 ? -1 : 1);
+  const [debitPrefix, setDebitPrefix] = useState(value <= 0 ? '-' : '');
   const optionsInput = {
     precision: 2,
     separator: ',',
@@ -17,9 +19,11 @@ const NewEntryInput = ({value, onChangeValue}) => {
     if (debit < 0) {
       setDebit(1);
       setDebitPrefix('');
+      onChangeDebit(false);
     } else {
       setDebit(-1);
       setDebitPrefix('-');
+      onChangeDebit(true);
     }
     onChangeValue(value * -1);
   };

@@ -11,7 +11,11 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
     <TouchableOpacity
       onPress={() => onEntryPress && onEntryPress(entry)}
       style={styles.container}>
-      <Ball isFirstItem={isFirstItem} isLastItem={isLastItem} />
+      <Ball
+        isFirstItem={isFirstItem}
+        isLastItem={isLastItem}
+        color={entry.category.color}
+      />
       <View style={styles.description}>
         <Text style={styles.descriptionText}>{entry.description}</Text>
         <View style={styles.details}>

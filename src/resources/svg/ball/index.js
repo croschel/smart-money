@@ -4,12 +4,12 @@ import {Svg, Rect, Circle, G} from 'react-native-svg';
 import colors from '~/styles/colors';
 
 const ball = (props) => {
-  const {isFirstItem, isLastItem} = props;
+  const {isFirstItem, isLastItem, color} = props;
   const bulletLineY = isFirstItem ? 25 : 0;
   const bulletLineHeight = isLastItem ? 25 : 50;
   const showBulletLine = !(isFirstItem && isLastItem);
 
-  const bullletColor = colors.white;
+  const bullletColor = color;
   return (
     <Svg width="30" height="50">
       {showBulletLine && (
