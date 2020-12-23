@@ -20,4 +20,13 @@ export default StyleSheet.create({
     borderWidth: 1,
     width: width - 20,
   },
+  formActionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 10,
+  },
+  formContainer: {
+    flex: 1,
+    paddingVertical: 20,
+  },
 });

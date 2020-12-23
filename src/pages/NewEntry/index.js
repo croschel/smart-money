@@ -3,6 +3,7 @@ import {View, Button} from 'react-native';
 import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
+import NewEntryDatePicker from './NewEntryDatePicker';
 import {saveEntry, deleteEntry} from '~/services/Entries';
 import styles from './styles';
 
@@ -22,6 +23,7 @@ const NewEntry = ({navigation}) => {
     `${parseFloat(entry.amount).toFixed(2)}`
   );
   const [category, setCategory] = useState(entry.category);
+  const [entryAt, setEntryAt] = useState(entry.entryAt);
 
   const isValid = () => {
     if (parseFloat(amount) !== 0) {
@@ -34,6 +36,7 @@ const NewEntry = ({navigation}) => {
     const value = {
       amount: parseFloat(amount),
       category: category,
+      entryAt: entryAt,
     };
     saveEntry(value, entry);
     onClose();
@@ -51,7 +54,7 @@ const NewEntry = ({navigation}) => {
   return (
     <View style={styles.container}>
       <BalanceLabel />
-      <View>
+      <View style={styles.formContainer}>
         <NewEntryInput
           value={amount}
           onChangeValue={(value) => setAmount(value)}
@@ -62,8 +65,11 @@ const NewEntry = ({navigation}) => {
           category={category}
           onChangeCategory={setCategory}
         />
-        <Button title="GPS" />
-        <Button title="Camera" />
+        <View style={styles.formActionContainer}>
+          <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+        </View>
+        {/* <Button title="GPS" />
+        <Button title="Camera" /> */}
       </View>
       <View>
         <Button

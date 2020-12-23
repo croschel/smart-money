@@ -1,3 +1,14 @@
+/*
+  cliente com possibilidade de escolher objetivos financeiros,
+  com base nisso o mesmo será avisado caso este objetivo esteja ficando
+  mais distante ou mais perto, de acordo com as compras e créditos em conta
+  mensais. O cliente poderá escolher uma categoria de objetivos e subsequentemente
+  poderá nomear seu objetivo.
+
+  Cliente pode definir objetivos claros financeiros com base em quanto quer
+  levantar em determinado espaço de tempo
+*/
+
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import BalancePanel from '~/components/BalancePanel';
