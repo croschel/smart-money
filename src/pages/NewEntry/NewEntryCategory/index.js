@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, Modal, FlatList} from 'react-native';
 
 import {getDebitCategories, getCreditCategories} from '~/services/Categories';
+import {
+  ActionFooter,
+  ActionPrimaryButton,
+} from '~/components/Core/ActionFooter';
 
 import styles from './styles';
 
@@ -57,9 +61,9 @@ const NewEntryCategory = (props) => {
               </TouchableOpacity>
             )}
           />
-          <TouchableOpacity style={styles.closeButton} onPress={onClosePress}>
-            <Text style={styles.closeButtonText}>FECHAR</Text>
-          </TouchableOpacity>
+          <ActionFooter>
+            <ActionPrimaryButton title="FECHAR" onPress={onClosePress} />
+          </ActionFooter>
         </View>
       </Modal>
     </View>

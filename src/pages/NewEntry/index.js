@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
-import {View, Button} from 'react-native';
+import {View} from 'react-native';
 import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
 import NewEntryDatePicker from './NewEntryDatePicker';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
+import {
+  ActionFooter,
+  ActionPrimaryButton,
+  ActionSecondaryButton,
+} from '~/components/Core/ActionFooter';
 import {saveEntry, deleteEntry} from '~/services/Entries';
 import styles from './styles';
 
@@ -74,13 +79,15 @@ const NewEntry = ({navigation}) => {
         <Button title="Camera" /> */}
       </View>
       <View>
-        <Button
-          title="Adicionar"
-          onPress={() => {
-            isValid() && onSave();
-          }}
-        />
-        <Button title="Cancelar" onPress={() => onClose()} />
+        <ActionFooter>
+          <ActionPrimaryButton
+            title={entry.id ? 'Atualizar' : 'Adicionar'}
+            onPress={() => {
+              isValid() && onSave();
+            }}
+          />
+          <ActionSecondaryButton title="Cancelar" onPress={onClose} />
+        </ActionFooter>
       </View>
     </View>
   );
