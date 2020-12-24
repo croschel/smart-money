@@ -1,20 +1,20 @@
-
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import Main from './pages/Main';
 import NewEntry from './pages/NewEntry';
 import Report from './pages/Report';
 
 const Routes = createAppContainer(
-  createSwitchNavigator({
-    Main,
-    NewEntry,
-    Report,
-  },
+  createSwitchNavigator(
+    {
+      Main,
+      Report,
+      NewEntry,
+    },
     {
       initialRouteName: 'Main',
-      backBehavior: 'order'
+      backBehavior: 'history',
     }
   )
-)
+);
 
 export default Routes;

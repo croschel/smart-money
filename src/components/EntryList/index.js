@@ -5,7 +5,8 @@ import EntryListItem from './EntryListItem';
 import {getEntries} from '~/services/Entries';
 import styles from './styles';
 
-const EntryList = ({onEntryPress, onPressActionButton}) => {
+const EntryList = (props) => {
+  const {onEntryPress, onPressActionButton} = props;
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
