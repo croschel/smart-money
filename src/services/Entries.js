@@ -2,11 +2,21 @@ import {Alert} from 'react-native';
 
 import {getRealm} from './Realm';
 import {getUUID} from '~/services/UUID';
+import {getSubDays} from '~/util';
 
-export const getEntries = async () => {
+export const getEntries = async (days) => {
   const realm = await getRealm();
+  let entries;
+  if (days > 0) {
+    const date = getSubDays(days);
+    entries = realm
+      .objects('Entry')
+      .filtered(`entryAt >= $0`, date)
+      .sorted('entryAt', true);
+  } else {
+    entries = realm.objects('Entry').sorted('entryAt', true);
+  }
 
-  const entries = realm.objects('Entry').sorted('entryAt', true);
   console.log('getEntries :: entries', JSON.stringify(entries));
   return entries;
 };

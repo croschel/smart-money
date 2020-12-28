@@ -1,12 +1,10 @@
-import {getDate, getMonth, getHours, getMinutes} from 'date-fns';
+import {format, subDays} from 'date-fns';
 
 export const convertDateDetails = (parsedDate) => {
-  const day = getDate(parsedDate);
-  const month = getMonth(parsedDate);
-  const hour = getHours(parsedDate);
-  const minutes = getMinutes(parsedDate);
+  console.log('parsedDate :: ', parsedDate);
+  const response = format(parsedDate, "dd'/'MM HH':'mm");
 
-  return `${day}/${month} ${hour}:${minutes}`;
+  return response;
 };
 
 export const amountFormat = (amount) => {
@@ -14,4 +12,10 @@ export const amountFormat = (amount) => {
   const stringAmount = formattedAmount.toString();
   const formatStringAmount = stringAmount.replace('.', ',');
   return formatStringAmount;
+};
+
+export const getSubDays = (qntDays) => {
+  const date = subDays(new Date(), qntDays);
+  console.log('subDays :: ', date);
+  return date;
 };

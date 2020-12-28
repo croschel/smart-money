@@ -6,12 +6,12 @@ import {getEntries} from '~/services/Entries';
 import styles from './styles';
 
 const EntryList = (props) => {
-  const {onEntryPress, onPressActionButton} = props;
+  const {onEntryPress, onPressActionButton, days = 7} = props;
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
     async function loadEntries() {
-      const data = await getEntries();
+      const data = await getEntries(days);
       setEntries(data);
     }
     loadEntries();
