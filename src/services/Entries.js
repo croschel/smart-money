@@ -17,7 +17,7 @@ export const getEntries = async (days) => {
     entries = realm.objects('Entry').sorted('entryAt', true);
   }
 
-  console.log('getEntries :: entries', JSON.stringify(entries));
+  // console.log('getEntries :: entries', JSON.stringify(entries));
   return entries;
 };
 

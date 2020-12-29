@@ -1,7 +1,6 @@
 import {format, subDays} from 'date-fns';
 
 export const convertDateDetails = (parsedDate) => {
-  console.log('parsedDate :: ', parsedDate);
   const response = format(parsedDate, "dd'/'MM HH':'mm");
 
   return response;
@@ -16,6 +15,33 @@ export const amountFormat = (amount) => {
 
 export const getSubDays = (qntDays) => {
   const date = subDays(new Date(), qntDays);
-  console.log('subDays :: ', date);
   return date;
+};
+
+export const formatSingleNumber = (days) => {
+  let response;
+  switch (days) {
+    case 1:
+      response = 'Últimas 24 horas';
+      break;
+    case 30:
+      response = 'Último mês';
+      break;
+    case 60:
+      response = 'Últimos dois meses';
+      break;
+    case 90:
+      response = 'Últimos três meses';
+      break;
+    case 180:
+      response = 'Últimos seis meses';
+      break;
+    case 365:
+      response = 'Último ano';
+      break;
+    default:
+      response = `Últimos ${days} dias`;
+      break;
+  }
+  return response;
 };

@@ -15,7 +15,7 @@ const EntryList = (props) => {
       setEntries(data);
     }
     loadEntries();
-  }, []);
+  }, [days]);
 
   const checkBallFirstPosition = (index) => {
     if (index === 0) {

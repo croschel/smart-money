@@ -20,4 +20,18 @@ export default StyleSheet.create({
     borderWidth: 1,
     width: metrics.width - 20,
   },
+  filterButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: colors.champagneDark,
+    borderWidth: 1,
+    borderRadius: 150,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginHorizontal: 8,
+  },
+  filterButtonText: {
+    color: colors.champagneDark,
+    textAlign: 'center',
+  },
 });
