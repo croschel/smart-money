@@ -4,18 +4,22 @@ import {getRealm} from './Realm';
 import {getUUID} from '~/services/UUID';
 import {getSubDays} from '~/util';
 
-export const getEntries = async (days) => {
-  const realm = await getRealm();
-  let entries;
+export const getEntries = async (days, category) => {
+  let realm = await getRealm();
+
+  realm = realm.objects('Entry');
+
   if (days > 0) {
     const date = getSubDays(days);
-    entries = realm
-      .objects('Entry')
-      .filtered(`entryAt >= $0`, date)
-      .sorted('entryAt', true);
-  } else {
-    entries = realm.objects('Entry').sorted('entryAt', true);
+    realm = realm.filtered('entryAt >= $0', date);
   }
+  if (category && category.id) {
+    console.log('getEntries :: category ', JSON.stringify(category));
+
+    realm = realm.filtered('category == $0', category);
+  }
+
+  const entries = realm.sorted('entryAt', true);
 
   // console.log('getEntries :: entries', JSON.stringify(entries));
   return entries;

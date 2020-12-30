@@ -11,6 +11,7 @@ import BalanceLabel from '~/components/BalanceLabel';
 import EntrySummary from '~/components/EntrySummary';
 import EntryList from '~/components/EntryList';
 import RelativeDaysModal from '~/components/Core/RelativeDaysModal';
+import CategoryModal from '~/components/CategoryModal';
 import {
   ActionFooter,
   ActionPrimaryButton,
@@ -21,8 +22,22 @@ import {formatSingleNumber} from '~/util';
 
 const Report = (props) => {
   const {navigation} = props;
-  const [showRelativeDaysModal, setRelativeDaysModal] = useState(false);
+  const [showRelativeDaysModal, setShowRelativeDaysModal] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [relativeDays, setRelativeDays] = useState(7);
+  const [category, setCategory] = useState({
+    id: null,
+    name: 'Todas as Categorias',
+  });
+
+  const onSelectCategory = (item) => {
+    setCategory(item);
+    onCategoryCloseModal();
+  };
+
+  const onCategoryCloseModal = () => {
+    setShowCategoryModal(false);
+  };
 
   const onRelativeDaysPress = (item) => {
     setRelativeDays(item);
@@ -30,19 +45,29 @@ const Report = (props) => {
   };
 
   const onRelativeDaysClose = () => {
-    setRelativeDaysModal(false);
+    setShowRelativeDaysModal(false);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <BalanceLabel currentBalance={2220.5} />
-      <View>
+      <View style={styles.filtersContainer}>
         <TouchableOpacity
-          onPress={() => setRelativeDaysModal(true)}
+          onPress={() => setShowRelativeDaysModal(true)}
           style={styles.filterButton}>
           <Text style={styles.filterButtonText}>
             {formatSingleNumber(relativeDays)}
           </Text>
+          <Icon
+            name="keyboard-arrow-down"
+            size={20}
+            color={colors.champagneDark}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setShowCategoryModal()}
+          style={styles.filterButton}>
+          <Text style={styles.filterButtonText}>{category.name}</Text>
           <Icon
             name="keyboard-arrow-down"
             size={20}
@@ -54,10 +79,16 @@ const Report = (props) => {
           onConfirm={onRelativeDaysPress}
           onCancel={onRelativeDaysClose}
         />
+        <CategoryModal
+          filter
+          modalVisible={showCategoryModal}
+          onSelectCategory={onSelectCategory}
+          onClose={onCategoryCloseModal}
+        />
       </View>
       <ScrollView>
         <EntrySummary />
-        <EntryList days={relativeDays} />
+        <EntryList days={relativeDays} category={category} />
       </ScrollView>
       <View>
         <ActionFooter>

@@ -6,7 +6,7 @@ import {getDefaultCategories} from './Categories';
 export const initDB = (realm) => {
   const categoriesLength = realm.objects('Category').length;
 
-  console.log('Qnt de categorias: ', categoriesLength);
+  // console.log('Qnt de categorias: ', categoriesLength);
 
   if (categoriesLength === 0) {
     const categories = getDefaultCategories();
@@ -24,7 +24,7 @@ export const initDB = (realm) => {
       });
     } catch (error) {}
   } else {
-    console.log('initDB :: categories already exists');
+    // console.log('initDB :: categories already exists');
   }
 };
 

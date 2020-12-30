@@ -34,4 +34,9 @@ export default StyleSheet.create({
     color: colors.champagneDark,
     textAlign: 'center',
   },
+  filtersContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 16,
+  },
 });

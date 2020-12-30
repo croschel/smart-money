@@ -1,21 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, Button} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, Button } from 'react-native';
 import Container from '~/components/Core/Container';
 import EntryListItem from './EntryListItem';
-import {getEntries} from '~/services/Entries';
+import { getEntries } from '~/services/Entries';
 import styles from './styles';
 
 const EntryList = (props) => {
-  const {onEntryPress, onPressActionButton, days = 7} = props;
+  const { onEntryPress, onPressActionButton, days, category } = props;
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
     async function loadEntries() {
-      const data = await getEntries(days);
+      const data = await getEntries(days, category);
       setEntries(data);
     }
     loadEntries();
-  }, [days]);
+  }, [days, category]);
 
   const checkBallFirstPosition = (index) => {
     if (index === 0) {
@@ -40,7 +40,7 @@ const EntryList = (props) => {
       <FlatList
         data={entries}
         keyExtractor={(item) => item.id}
-        renderItem={({item, index}) => (
+        renderItem={({ item, index }) => (
           <EntryListItem
             entry={item}
             isFirstItem={checkBallFirstPosition(index)}
