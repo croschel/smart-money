@@ -7,5 +7,5 @@ export default StyleSheet.create({
     backgroundColor: colors.background,
   },
   label: {},
-  value: {}
-})
+  value: {},
+});

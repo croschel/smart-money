@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
 import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
@@ -10,10 +10,10 @@ import {
   ActionPrimaryButton,
   ActionSecondaryButton,
 } from '~/components/Core/ActionFooter';
-import {saveEntry, deleteEntry} from '~/services/Entries';
+import { saveEntry, deleteEntry } from '~/services/Entries';
 import styles from './styles';
 
-const NewEntry = ({navigation}) => {
+const NewEntry = ({ navigation }) => {
   const entry = navigation.getParam('entry', {
     id: null,
     amount: 0.0,
@@ -38,11 +38,15 @@ const NewEntry = ({navigation}) => {
     return false;
   };
 
+  const onClose = () => {
+    navigation.goBack();
+  };
+
   const onSave = () => {
     const value = {
       amount: parseFloat(amount),
-      category: category,
-      entryAt: entryAt,
+      category,
+      entryAt,
     };
     saveEntry(value, entry);
     onClose();
@@ -52,11 +56,6 @@ const NewEntry = ({navigation}) => {
     deleteEntry(entry);
     onClose();
   };
-
-  const onClose = () => {
-    navigation.goBack();
-  };
-
   return (
     <View style={styles.container}>
       <BalanceLabel />
@@ -82,9 +81,7 @@ const NewEntry = ({navigation}) => {
         <ActionFooter>
           <ActionPrimaryButton
             title={entry.id ? 'Atualizar' : 'Adicionar'}
-            onPress={() => {
-              isValid() && onSave();
-            }}
+            onPress={() => isValid() && onSave()}
           />
           <ActionSecondaryButton title="Cancelar" onPress={onClose} />
         </ActionFooter>

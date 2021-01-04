@@ -16,27 +16,21 @@ import EntrySummary from '~/components/EntrySummary';
 import EntryList from '~/components/EntryList';
 import styles from './styles';
 
-const Main = ({ navigation }) => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <BalancePanel
-        currentBalance={2220.55}
-        onNewEntryPress={() => navigation.navigate('NewEntry')}
+const Main = ({ navigation }) => (
+  <SafeAreaView style={styles.container}>
+    <BalancePanel
+      currentBalance={2220.55}
+      onNewEntryPress={() => navigation.navigate('NewEntry')}
+    />
+    <ScrollView>
+      <EntrySummary onPressActionButton={() => navigation.navigate('Report')} />
+      <EntryList
+        days={7}
+        onEntryPress={(entry) => navigation.navigate('NewEntry', { entry })}
+        onPressActionButton={() => navigation.navigate('Report')}
       />
-      <ScrollView>
-        <EntrySummary
-          onPressActionButton={() => navigation.navigate('Report')}
-        />
-        <EntryList
-          days={7}
-          onEntryPress={(entry) =>
-            navigation.navigate('NewEntry', { entry: entry })
-          }
-          onPressActionButton={() => navigation.navigate('Report')}
-        />
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+    </ScrollView>
+  </SafeAreaView>
+);
 
 export default Main;

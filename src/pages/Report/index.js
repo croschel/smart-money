@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   SafeAreaView,
@@ -18,10 +18,10 @@ import {
 } from '~/components/Core/ActionFooter';
 import colors from '~/styles/colors';
 import styles from './styles';
-import {formatSingleNumber} from '~/util';
+import { formatSingleNumber } from '~/util';
 
 const Report = (props) => {
-  const {navigation} = props;
+  const { navigation } = props;
   const [showRelativeDaysModal, setShowRelativeDaysModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [relativeDays, setRelativeDays] = useState(7);
@@ -30,31 +30,31 @@ const Report = (props) => {
     name: 'Todas as Categorias',
   });
 
-  const onSelectCategory = (item) => {
-    setCategory(item);
-    onCategoryCloseModal();
-  };
-
   const onCategoryCloseModal = () => {
     setShowCategoryModal(false);
   };
 
-  const onRelativeDaysPress = (item) => {
-    setRelativeDays(item);
-    onRelativeDaysClose();
+  const onSelectCategory = (item) => {
+    setCategory(item);
+    onCategoryCloseModal();
   };
 
   const onRelativeDaysClose = () => {
     setShowRelativeDaysModal(false);
   };
 
+  const onRelativeDaysPress = (item) => {
+    setRelativeDays(item);
+    onRelativeDaysClose();
+  };
   return (
     <SafeAreaView style={styles.container}>
       <BalanceLabel currentBalance={2220.5} />
       <View style={styles.filtersContainer}>
         <TouchableOpacity
           onPress={() => setShowRelativeDaysModal(true)}
-          style={styles.filterButton}>
+          style={styles.filterButton}
+        >
           <Text style={styles.filterButtonText}>
             {formatSingleNumber(relativeDays)}
           </Text>
@@ -66,7 +66,8 @@ const Report = (props) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setShowCategoryModal()}
-          style={styles.filterButton}>
+          style={styles.filterButton}
+        >
           <Text style={styles.filterButtonText}>{category.name}</Text>
           <Icon
             name="keyboard-arrow-down"
