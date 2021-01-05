@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Button } from 'react-native';
+import { FlatList } from 'react-native';
 import Container from '~/components/Core/Container';
 import EntryListItem from './EntryListItem';
 import { getEntries } from '~/services/Entries';
-import styles from './styles';
+// import styles from './styles';
 
 const EntryList = (props) => {
+  // eslint-disable-next-line object-curly-newline
   const { onEntryPress, onPressActionButton, days, category } = props;
   const [entries, setEntries] = useState([]);
 
@@ -36,7 +37,8 @@ const EntryList = (props) => {
       title="Últimos Lançamentos"
       actionLabelText="Últimos 7 dias"
       actionButtonText="Ver mais"
-      onPressActionButton={onPressActionButton}>
+      onPressActionButton={onPressActionButton}
+    >
       <FlatList
         data={entries}
         keyExtractor={(item) => item.id}

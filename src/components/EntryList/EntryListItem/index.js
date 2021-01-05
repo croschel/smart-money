@@ -1,16 +1,19 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {Ball} from '~/resources/svg';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Ball } from '~/resources/svg';
 import colors from '~/styles/colors';
 import styles from './styles';
-import {convertDateDetails, amountFormat} from '~/util';
+import { convertDateDetails, amountFormat } from '~/util';
 
-const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
+const EntryListItem = (props) => {
+  // eslint-disable-next-line object-curly-newline
+  const { entry, isFirstItem, isLastItem, onEntryPress } = props;
   return (
     <TouchableOpacity
       onPress={() => onEntryPress && onEntryPress(entry)}
-      style={styles.container}>
+      style={styles.container}
+    >
       <Ball
         isFirstItem={isFirstItem}
         isLastItem={isLastItem}

@@ -18,10 +18,7 @@ import styles from './styles';
 
 const Main = ({ navigation }) => (
   <SafeAreaView style={styles.container}>
-    <BalancePanel
-      currentBalance={2220.55}
-      onNewEntryPress={() => navigation.navigate('NewEntry')}
-    />
+    <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')} />
     <ScrollView>
       <EntrySummary onPressActionButton={() => navigation.navigate('Report')} />
       <EntryList

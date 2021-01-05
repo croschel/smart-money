@@ -1,4 +1,4 @@
-import {format, subDays} from 'date-fns';
+import { format, subDays } from 'date-fns';
 
 export const convertDateDetails = (parsedDate) => {
   const response = format(parsedDate, "dd'/'MM HH':'mm");
@@ -7,7 +7,15 @@ export const convertDateDetails = (parsedDate) => {
 };
 
 export const amountFormat = (amount) => {
-  const formattedAmount = `$${parseFloat(amount).toFixed(2)}`;
+  let signal = '';
+  let multiplicator = 1;
+  if (amount < 0) {
+    signal = '-';
+    multiplicator = -1;
+  }
+  const formattedAmount = `${signal}$${
+    parseFloat(amount).toFixed(2) * multiplicator
+  }`;
   const stringAmount = formattedAmount.toString();
   const formatStringAmount = stringAmount.replace('.', ',');
   return formatStringAmount;

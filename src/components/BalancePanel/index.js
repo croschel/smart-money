@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BalancePanelLabel from './BalancePanelLabel';
@@ -8,13 +8,15 @@ import colors from '~/styles/colors';
 
 import styles from './styles';
 
-const BalanceLabel = ({currentBalance, onNewEntryPress}) => {
+const BalanceLabel = (props) => {
+  const { onNewEntryPress } = props;
   return (
     <View style={styles.container}>
       <LinearGradient
         style={styles.panel}
-        colors={[colors.violet, colors.blue]}>
-        <BalancePanelLabel currentBalance={currentBalance} />
+        colors={[colors.violet, colors.blue]}
+      >
+        <BalancePanelLabel />
         <BalancePanelChart />
       </LinearGradient>
       <TouchableOpacity style={styles.button} onPress={onNewEntryPress}>

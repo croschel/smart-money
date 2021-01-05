@@ -1,13 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {amountFormat} from '~/util';
+import { View, Text } from 'react-native';
+import useBalance from '~/hooks/useBalance';
 import styles from './styles';
 
-const BalancePanelLabel = ({currentBalance}) => {
+const BalancePanelLabel = () => {
+  const [currentBalance] = useBalance();
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Saldo Atual</Text>
-      <Text style={styles.value}>{amountFormat(currentBalance)}</Text>
+      <Text style={styles.value}>{currentBalance}</Text>
     </View>
   );
 };

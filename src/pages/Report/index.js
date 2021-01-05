@@ -49,7 +49,7 @@ const Report = (props) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <BalanceLabel currentBalance={2220.5} />
+      <BalanceLabel />
       <View style={styles.filtersContainer}>
         <TouchableOpacity
           onPress={() => setShowRelativeDaysModal(true)}
@@ -89,7 +89,11 @@ const Report = (props) => {
       </View>
       <ScrollView>
         <EntrySummary />
-        <EntryList days={relativeDays} category={category} />
+        <EntryList
+          onEntryPress={(entry) => navigation.navigate('NewEntry', { entry })}
+          days={relativeDays}
+          category={category}
+        />
       </ScrollView>
       <View>
         <ActionFooter>
