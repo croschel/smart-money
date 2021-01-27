@@ -22,11 +22,13 @@ const NewEntryCategory = (props) => {
     <View>
       <TouchableOpacity
         style={styles.pickerButton}
-        onPress={() => setModalVisible(true)}>
+        onPress={() => setModalVisible(true)}
+      >
         <Text style={styles.pickerButtonText}>{category.name}</Text>
       </TouchableOpacity>
       <CategoryModal
         debit={debit}
+        filter
         modalVisible={modalVisible}
         onSelectCategory={onCategoryPress}
         onClose={onClosePress}

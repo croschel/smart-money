@@ -81,7 +81,6 @@ const Report = (props) => {
           onCancel={onRelativeDaysClose}
         />
         <CategoryModal
-          filter
           modalVisible={showCategoryModal}
           onSelectCategory={onSelectCategory}
           onClose={onCategoryCloseModal}

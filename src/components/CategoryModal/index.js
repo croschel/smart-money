@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line object-curly-newline
 import { View, Text, Modal, FlatList, TouchableOpacity } from 'react-native';
 import {
   ActionFooter,
@@ -12,6 +13,7 @@ import {
 import styles from './styles';
 
 const CategoryModal = (props) => {
+  // eslint-disable-next-line object-curly-newline
   const { debit, filter, onSelectCategory, onClose, modalVisible } = props;
 
   const [categories, setCategories] = useState([]);
@@ -19,14 +21,12 @@ const CategoryModal = (props) => {
   useEffect(() => {
     async function loadCategories() {
       let data;
-      if (filter) {
+      if (!filter) {
         data = await getAllCategories();
+      } else if (debit) {
+        data = await getDebitCategories();
       } else {
-        if (debit) {
-          data = await getDebitCategories();
-        } else {
-          data = await getCreditCategories();
-        }
+        data = await getCreditCategories();
       }
 
       setCategories(data);
@@ -43,7 +43,8 @@ const CategoryModal = (props) => {
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => onSelectCategory(item)}
-              style={styles.modalItem}>
+              style={styles.modalItem}
+            >
               <Text style={[styles.modalItemText, { color: item.color }]}>
                 {item.name}
               </Text>
