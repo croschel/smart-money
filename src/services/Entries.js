@@ -1,8 +1,8 @@
-import {Alert} from 'react-native';
+import { Alert } from 'react-native';
 
-import {getRealm} from './Realm';
-import {getUUID} from '~/services/UUID';
-import {getSubDays} from '~/util';
+import { getRealm } from './Realm';
+import { getUUID } from '~/services/UUID';
+import { getSubDays } from '~/util';
 
 export const getEntries = async (days, category) => {
   let realm = await getRealm();
@@ -40,11 +40,11 @@ export const saveEntry = async (value, entry = {}) => {
       };
       realm.create('Entry', data, true);
     });
-    console.log('saveEntry :: data: ', JSON.stringify(data));
+    // console.log('saveEntry :: data: ', JSON.stringify(data));
   } catch (error) {
-    console.error(
-      'saveEntry :: error on save object: ' + JSON.stringify(this.data)
-    );
+    /* console.error(
+      `saveEntry :: error on save object: ${JSON.stringify(this.data)}`
+    ); */
     Alert.alert('Erro ao salvar os dados de lançamento');
   }
   return data;
@@ -58,9 +58,9 @@ export const deleteEntry = async (entry) => {
       realm.delete(entry);
     });
   } catch (error) {
-    console.error(
-      'deleteEntry :: error on delte object: ' + JSON.stringify(this.data)
-    );
+    /* console.error(
+      `deleteEntry :: error on delte object: ${JSON.stringify(this.data)}`
+    ); */
     Alert.alert('Erro ao deletar os dados de lançamento');
   }
 };

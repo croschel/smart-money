@@ -1,6 +1,7 @@
-import { v4 as uuidv4 } from 'uuid';
+import 'react-native-get-random-values';
+import { v1 as uuidv1 } from 'uuid';
 
 export const getUUID = () => {
-  const uuid = uuidv4();
+  const uuid = uuidv1();
   return uuid;
-}
+};
