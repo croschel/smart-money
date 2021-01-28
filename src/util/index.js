@@ -1,7 +1,8 @@
 import { format, subDays } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 
 export const convertDateDetails = (parsedDate) => {
-  const response = format(parsedDate, "dd'/'MM HH':'mm");
+  const response = format(parsedDate, "dd'/'MM HH':'mm", { locale: pt });
 
   return response;
 };

@@ -10,10 +10,12 @@ import {
   ActionPrimaryButton,
   ActionSecondaryButton,
 } from '~/components/Core/ActionFooter';
-import { saveEntry, deleteEntry } from '~/services/Entries';
+import useEntries from '~/hooks/useEntries';
 import styles from './styles';
 
 const NewEntry = ({ navigation }) => {
+  const [, saveEntry, deleteEntry] = useEntries();
+
   const entry = navigation.getParam('entry', {
     id: null,
     amount: 0.0,

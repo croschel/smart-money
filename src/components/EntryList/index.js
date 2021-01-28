@@ -2,21 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import Container from '~/components/Core/Container';
 import EntryListItem from './EntryListItem';
-import { getEntries } from '~/services/Entries';
+import useEntries from '~/hooks/useEntries';
 // import styles from './styles';
 
 const EntryList = (props) => {
   // eslint-disable-next-line object-curly-newline
   const { onEntryPress, onPressActionButton, days, category } = props;
-  const [entries, setEntries] = useState([]);
-
-  useEffect(() => {
-    async function loadEntries() {
-      const data = await getEntries(days, category);
-      setEntries(data);
-    }
-    loadEntries();
-  }, [days, category]);
+  const [entries] = useEntries(days, category);
 
   const checkBallFirstPosition = (index) => {
     if (index === 0) {
