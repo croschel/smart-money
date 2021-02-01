@@ -2,8 +2,10 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-
+    paddingHorizontal: 40,
+    marginTop: -20,
   },
-  label: {},
-  value: {}
-})
+  chart: {
+    height: 60,
+  },
+});

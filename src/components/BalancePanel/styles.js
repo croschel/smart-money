@@ -3,7 +3,7 @@ import colors from '~/styles/colors';
 
 export default StyleSheet.create({
   container: {
-
+    marginBottom: -25,
   },
   panel: {
     paddingVertical: 10,
@@ -20,5 +20,5 @@ export default StyleSheet.create({
     marginRight: 10,
     shadowColor: colors.black,
     elevation: 5,
-  }
-})
+  },
+});

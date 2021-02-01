@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
 import Container from '~/components/Core/Container';
 import EntryListItem from './EntryListItem';
@@ -7,7 +7,7 @@ import useEntries from '~/hooks/useEntries';
 
 const EntryList = (props) => {
   // eslint-disable-next-line object-curly-newline
-  const { onEntryPress, onPressActionButton, days, category } = props;
+  const { onEntryPress, onPressActionButton, days = 7, category } = props;
   const [entries] = useEntries(days, category);
 
   const checkBallFirstPosition = (index) => {
@@ -27,7 +27,7 @@ const EntryList = (props) => {
   return (
     <Container
       title="Últimos Lançamentos"
-      actionLabelText="Últimos 7 dias"
+      actionLabelText={`Últimos ${days} dias`}
       actionButtonText="Ver mais"
       onPressActionButton={onPressActionButton}
     >
