@@ -3,18 +3,12 @@ import { View } from 'react-native';
 import EntrySummaryList from './EntrySummaryList';
 import EntrySummaryChart from './EntrySummaryChart';
 import Container from '~/components/Core/Container';
+import useBalanceSumByCategory from '~/hooks/useBalanceSumbyCategory';
 import styles from './styles';
 
 const EntrySummary = (props) => {
   const { days = 7, onPressActionButton } = props;
-
-  const categories = [
-    { key: '1', description: 'Alimentação', amount: 200 },
-    { key: '2', description: 'Combustível', amount: 12 },
-    { key: '3', description: 'Aluguel', amount: 120 },
-    { key: '4', description: 'Lazer', amount: 250 },
-    { key: '5', description: 'Outros', amount: 1200 },
-  ];
+  const [balanceSum] = useBalanceSumByCategory(days);
 
   return (
     <Container
@@ -24,8 +18,8 @@ const EntrySummary = (props) => {
       onPressActionButton={onPressActionButton}
     >
       <View style={styles.contentBox}>
-        <EntrySummaryChart />
-        <EntrySummaryList categories={categories} />
+        <EntrySummaryChart data={balanceSum} />
+        <EntrySummaryList categories={balanceSum} />
       </View>
     </Container>
   );

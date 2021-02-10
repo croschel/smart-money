@@ -37,7 +37,20 @@ export const getBalanceSumByDate = async (days) => {
         _.sum(_.slice(collection, 0, index)) +
         amount
     );
-  console.log(entries);
 
+  return entries;
+};
+
+export const getBalanceSumByCategory = async (days, showOther = true) => {
+  const realm = await getRealm();
+  let entries = realm.objects('Entry');
+
+  if (days > 0) {
+    const date = moment().subtract(days, 'days').toDate();
+    entries = entries.filtered('entryAt >= $0', date);
+  }
+  entries = _(entries).groupBy(({ category: { id } }) => id);
+
+  console.log('getBalanceByCategories :: ', JSON.stringify(entries));
   return entries;
 };

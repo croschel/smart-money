@@ -8,7 +8,6 @@ const useBalanceSumByDate = (days = 7) => {
   useEffect(() => {
     async function loadBalanceSumByDate() {
       const data = await getBalanceSumByDate(days);
-      console.log('array os balances :: ', data);
 
       setBalanceSum([...data]);
     }
