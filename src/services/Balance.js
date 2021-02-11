@@ -29,7 +29,8 @@ export const getBalanceSumByDate = async (days) => {
   entries = _(entries)
     .groupBy(({ entryAt }) =>
       // eslint-disable-next-line implicit-arrow-linebreak
-      moment(entryAt).format('YYYYMMDD'))
+      moment(entryAt).format('YYYYMMDD')
+    )
     .map((entry) => _.sumBy(entry, 'amount'))
     .map(
       (amount, index, collection) =>
@@ -49,7 +50,14 @@ export const getBalanceSumByCategory = async (days, showOther = true) => {
     const date = moment().subtract(days, 'days').toDate();
     entries = entries.filtered('entryAt >= $0', date);
   }
-  entries = _(entries).groupBy(({ category: { id } }) => id);
+  entries = _(entries)
+    .groupBy(({ category: { id } }) => id)
+    .map((entry) => ({
+      category: _.omit(entry[0].category, 'entries'),
+      amount: Math.abs(_.sumBy(entry, 'amount')),
+    }))
+    .filter(({ amount }) => amount > 0)
+    .orderBy('amount', 'desc');
 
   console.log('getBalanceByCategories :: ', JSON.stringify(entries));
   return entries;

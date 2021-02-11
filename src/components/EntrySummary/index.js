@@ -18,8 +18,8 @@ const EntrySummary = (props) => {
       onPressActionButton={onPressActionButton}
     >
       <View style={styles.contentBox}>
-        <EntrySummaryChart data={balanceSum} />
-        <EntrySummaryList categories={balanceSum} />
+        <EntrySummaryChart balance={balanceSum} />
+        <EntrySummaryList balance={balanceSum} />
       </View>
     </Container>
   );
