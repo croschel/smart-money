@@ -1,3 +1,4 @@
-import BallSvg from './ball';
+import Ball from './ball';
+import BallWithouLine from './ballWithoutLine';
 
-export const Ball = BallSvg;
+export { Ball, BallWithouLine };

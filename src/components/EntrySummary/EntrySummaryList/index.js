@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
-
+import { View, FlatList } from 'react-native';
+import EntrySummaryListItem from './EntrySummaryListItem';
 // import styles from './styles';
 
 const EntrySummaryList = (props) => {
@@ -10,9 +10,7 @@ const EntrySummaryList = (props) => {
       <FlatList
         data={balance}
         keyExtractor={(item) => item.category.id}
-        renderItem={({ item }) => (
-          <Text>{`${item.category.name}: $${item.amount}`}</Text>
-        )}
+        renderItem={({ item }) => <EntrySummaryListItem entry={item} />}
       />
     </View>
   );
