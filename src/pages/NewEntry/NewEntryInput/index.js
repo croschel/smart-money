@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {SafeAreaView, TouchableOpacity, Text} from 'react-native';
-import {TextInputMask} from 'react-native-masked-text';
-import {styles} from './styles';
+import React, { useState } from 'react';
+import { SafeAreaView, TouchableOpacity, Text } from 'react-native';
+import { TextInputMask } from 'react-native-masked-text';
+import { styles } from './styles';
 
 const NewEntryInput = (props) => {
-  const {value, onChangeValue, onChangeDebit} = props;
+  const { value, onChangeValue, onChangeDebit } = props;
 
   const [debit, setDebit] = useState(value <= 0 ? -1 : 1);
   const [debitPrefix, setDebitPrefix] = useState(value <= 0 ? '-' : '');
@@ -38,7 +38,7 @@ const NewEntryInput = (props) => {
         type="money"
         options={optionsInput}
         value={value}
-        includeRawValueInChangeText={true}
+        includeRawValueInChangeText
         onChangeText={(maskedValue, rawValue) => {
           onChangeValue(rawValue * debit);
         }}

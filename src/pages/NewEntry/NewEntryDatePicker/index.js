@@ -1,29 +1,29 @@
-import React, {useState} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity } from 'react-native';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import colors from '~/styles/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import colors from '~/styles/colors';
 import styles from './styles';
 
 const NewEntryDatePicker = (props) => {
-  const {value, onChange} = props;
+  const { value, onChange } = props;
   const [modalVisible, setModalVisible] = useState(false);
-
-  const onChangeValue = (date) => {
-    onChange(date);
-    onCancel();
-  };
 
   const onCancel = () => {
     setModalVisible(false);
   };
 
+  const onChangeValue = (date) => {
+    onChange(date);
+    onCancel();
+  };
   return (
     <View>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setModalVisible(true)}>
+        onPress={() => setModalVisible(true)}
+      >
         <Icon name="today" color={colors.white} size={30} />
       </TouchableOpacity>
       <DateTimePicker
