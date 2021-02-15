@@ -87,7 +87,7 @@ const Report = (props) => {
         />
       </View>
       <ScrollView>
-        <EntrySummary />
+        <EntrySummary days={relativeDays} />
         <EntryList
           onEntryPress={(entry) => navigation.navigate('NewEntry', { entry })}
           days={relativeDays}
