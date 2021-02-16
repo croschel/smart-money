@@ -5,6 +5,7 @@ import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
 import NewEntryDatePicker from './NewEntryDatePicker';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
+import NewEntryGeoPicker from './NewEntryGeoPicker';
 import {
   ActionFooter,
   ActionPrimaryButton,
@@ -75,9 +76,8 @@ const NewEntry = ({ navigation }) => {
         <View style={styles.formActionContainer}>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
           <NewEntryDeleteAction onOkPress={onDelete} entry={entry} />
+          <NewEntryGeoPicker />
         </View>
-        {/* <Button title="GPS" />
-        <Button title="Camera" /> */}
       </View>
       <View>
         <ActionFooter>
