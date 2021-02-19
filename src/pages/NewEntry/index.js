@@ -21,6 +21,9 @@ const NewEntry = ({ navigation }) => {
     id: null,
     amount: 0.0,
     entryAt: new Date(),
+    address: null,
+    latitude: null,
+    longitude: null,
     category: {
       id: null,
       name: 'Selecione',
@@ -33,6 +36,9 @@ const NewEntry = ({ navigation }) => {
   );
   const [category, setCategory] = useState(entry.category);
   const [entryAt, setEntryAt] = useState(entry.entryAt);
+  const [addressState, setAddressState] = useState(entry.address);
+  const [latitudeState, setLatitudeState] = useState(entry.latitude);
+  const [longitudeState, setLongitudeState] = useState(entry.longitude);
 
   const isValid = () => {
     if (parseFloat(amount) !== 0) {
@@ -48,6 +54,9 @@ const NewEntry = ({ navigation }) => {
   const onSave = () => {
     const value = {
       amount: parseFloat(amount),
+      address: addressState,
+      latitude: latitudeState,
+      longitude: longitudeState,
       category,
       entryAt,
     };
@@ -76,7 +85,14 @@ const NewEntry = ({ navigation }) => {
         <View style={styles.formActionContainer}>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
           <NewEntryDeleteAction onOkPress={onDelete} entry={entry} />
-          <NewEntryGeoPicker />
+          <NewEntryGeoPicker
+            address={addressState}
+            onChange={({ latitude, longitude, address }) => {
+              setLatitudeState(latitude);
+              setLongitudeState(longitude);
+              setAddressState(address);
+            }}
+          />
         </View>
       </View>
       <View>

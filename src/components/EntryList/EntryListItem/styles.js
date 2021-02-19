@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '~/styles/colors';
 
 export default StyleSheet.create({
@@ -38,9 +38,14 @@ export default StyleSheet.create({
   },
   amount: {
     justifyContent: 'center',
+    paddingLeft: 8,
   },
   amountText: {
     fontSize: 14,
     color: colors.white,
+  },
+  addressBox: {
+    flexDirection: 'row',
+    maxWidth: 210,
   },
 });

@@ -34,13 +34,16 @@ export const saveEntry = async (value, entry = {}) => {
         id: value.id || entry.id || getUUID(),
         description: value.category.name,
         amount: value.amount || entry.amount,
+        address: value.address || entry.address,
+        latitude: value.latitude || entry.latitude,
+        longitude: value.longitude || entry.longitude,
         entryAt: value.entryAt || entry.entryAt,
         category: value.category || entry.category,
         isInit: false,
       };
       realm.create('Entry', data, true);
     });
-    // console.log('saveEntry :: data: ', JSON.stringify(data));
+    console.log('saveEntry :: data: ', JSON.stringify(data));
   } catch (error) {
     /* console.error(
       `saveEntry :: error on save object: ${JSON.stringify(this.data)}`
