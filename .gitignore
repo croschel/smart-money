@@ -60,3 +60,4 @@ buck-out/
 
 # ENVIRONMENT
 .env
+.config.js

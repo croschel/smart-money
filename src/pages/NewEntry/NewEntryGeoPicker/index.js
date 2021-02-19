@@ -5,12 +5,13 @@ import Geocoder from 'react-native-geocoding';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '~/styles/colors';
 import styles from './styles';
+import keys from '~/../config';
 
 const NewEntryGeoPicker = (props) => {
   const { address, onChange } = props;
   const getLocation = (latitude, longitude) => {
     // remember to isolate api_key on env before push this branch
-    Geocoder.init('AIzaSyAk57YYzHSTRCnL_rt1zCQylWVsSGrpj48');
+    Geocoder.init(keys.GEO_KEY);
     Geocoder.from({ latitude, longitude })
       .then((json) => {
         const formattedAdress = json.results[0].formatted_address;
