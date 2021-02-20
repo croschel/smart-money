@@ -6,6 +6,7 @@ import NewEntryCategory from './NewEntryCategory';
 import NewEntryDatePicker from './NewEntryDatePicker';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
 import NewEntryGeoPicker from './NewEntryGeoPicker';
+import NewEntryCameraPicker from './NewEntryCameraPicker';
 import {
   ActionFooter,
   ActionPrimaryButton,
@@ -93,6 +94,7 @@ const NewEntry = ({ navigation }) => {
               setAddressState(address);
             }}
           />
+          <NewEntryCameraPicker />
         </View>
       </View>
       <View>

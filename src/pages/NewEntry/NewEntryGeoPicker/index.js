@@ -5,6 +5,7 @@ import Geocoder from 'react-native-geocoding';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '~/styles/colors';
 import styles from './styles';
+import ButtonIcon from '~/components/Core/ButtonIcon';
 import keys from '~/../config';
 
 const NewEntryGeoPicker = (props) => {
@@ -76,14 +77,11 @@ const NewEntryGeoPicker = (props) => {
     }
   };
   return (
-    <View>
-      <TouchableOpacity
-        onPress={onButtonPress}
-        style={[styles.button, address ? styles.buttonActivated : '']}
-      >
-        <Icon name="person-pin" color={colors.white} size={30} />
-      </TouchableOpacity>
-    </View>
+    <ButtonIcon
+      onButtonPress={onButtonPress}
+      activated={address}
+      icon="person-pin"
+    />
   );
 };
 
