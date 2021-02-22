@@ -38,6 +38,7 @@ export const saveEntry = async (value, entry = {}) => {
         latitude: value.latitude || entry.latitude,
         longitude: value.longitude || entry.longitude,
         entryAt: value.entryAt || entry.entryAt,
+        photo: value.photo,
         category: value.category || entry.category,
         isInit: false,
       };

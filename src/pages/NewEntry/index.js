@@ -22,6 +22,7 @@ const NewEntry = ({ navigation }) => {
     id: null,
     amount: 0.0,
     entryAt: new Date(),
+    photo: null,
     address: null,
     latitude: null,
     longitude: null,
@@ -38,6 +39,7 @@ const NewEntry = ({ navigation }) => {
   const [category, setCategory] = useState(entry.category);
   const [entryAt, setEntryAt] = useState(entry.entryAt);
   const [addressState, setAddressState] = useState(entry.address);
+  const [photo, setPhoto] = useState(entry.photo);
   const [latitudeState, setLatitudeState] = useState(entry.latitude);
   const [longitudeState, setLongitudeState] = useState(entry.longitude);
 
@@ -60,6 +62,7 @@ const NewEntry = ({ navigation }) => {
       longitude: longitudeState,
       category,
       entryAt,
+      photo,
     };
     saveEntry(value, entry);
     onClose();
@@ -94,7 +97,7 @@ const NewEntry = ({ navigation }) => {
               setAddressState(address);
             }}
           />
-          <NewEntryCameraPicker />
+          <NewEntryCameraPicker photo={photo} onChangePhoto={setPhoto} />
         </View>
       </View>
       <View>

@@ -1,6 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { useState } from 'react';
-import { Modal } from 'react-native';
+import { Modal, Alert } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PropTypes from 'prop-types';
@@ -12,7 +12,23 @@ const ModalCameraPicker = (props) => {
 
   const [camera, setCamera] = useState();
 
-  const onTakePicture = () => {};
+  const onTakePicture = async () => {
+    try {
+      const { uri } = await camera.takePictureAsync({
+        quality: 0.5,
+        forceUpOrientation: true,
+        fixOrientation: true,
+        skipProcessing: true,
+      });
+      onChangePhoto(uri);
+    } catch (error) {
+      console.error(
+        'NewEntryCameraPickerModal :: onTakePicture error on take picture',
+        error
+      );
+      Alert.alert('Erro', 'Houve um erro ao tirar a foto!');
+    }
+  };
 
   return (
     <Modal transparent={false} animationType="slide" visible={isVisible}>
