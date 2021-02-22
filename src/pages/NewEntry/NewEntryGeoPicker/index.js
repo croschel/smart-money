@@ -2,14 +2,15 @@ import React from 'react';
 import { Alert } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import Geocoder from 'react-native-geocoding';
+// eslint-disable-next-line import/no-unresolved
+import { API_KEY } from '@env';
 import ButtonIcon from '~/components/Core/ButtonIcon';
-import keys from '~/../config';
 
 const NewEntryGeoPicker = (props) => {
   const { address, onChange } = props;
   const getLocation = (latitude, longitude) => {
     // remember to isolate api_key on env before push this branch
-    Geocoder.init(keys.GEO_KEY);
+    Geocoder.init(API_KEY);
     Geocoder.from({ latitude, longitude })
       .then((json) => {
         const formattedAdress = json.results[0].formatted_address;
