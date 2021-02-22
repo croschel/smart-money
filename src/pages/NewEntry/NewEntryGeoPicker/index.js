@@ -1,10 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import Geocoder from 'react-native-geocoding';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import colors from '~/styles/colors';
-import styles from './styles';
 import ButtonIcon from '~/components/Core/ButtonIcon';
 import keys from '~/../config';
 
