@@ -13,6 +13,7 @@ export const getBalance = async (untilDay = 0) => {
   }
 
   const balance = entries.sum('amount');
+  console.log('getBalance :: ', balance);
   return balance;
 };
 
@@ -59,6 +60,6 @@ export const getBalanceSumByCategory = async (days, showOther = true) => {
     .filter(({ amount }) => amount > 0)
     .orderBy('amount', 'desc');
 
-  console.log('getBalanceByCategories :: ', JSON.stringify(entries));
+  // console.log('getBalanceByCategories :: ', JSON.stringify(entries));
   return entries;
 };
