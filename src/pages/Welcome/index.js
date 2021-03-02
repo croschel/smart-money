@@ -8,12 +8,22 @@ import {
   ActionFooter,
   ActionPrimaryButton,
 } from '~/components/Core/ActionFooter';
+import { saveEntry } from '~/services/Entries';
+import useCategories from '~/hooks/useCategories';
 
 const Welcome = (props) => {
   const { navigation } = props;
   const [amount, setAmount] = useState(0);
+  const [, , , initCategories] = useCategories();
 
-  const onSavePress = () => {};
+  const onSavePress = () => {
+    saveEntry({
+      amount,
+      category: initCategories,
+      isInit: true,
+    });
+    navigation.navigate('Main');
+  };
 
   return (
     <View style={styles.container}>

@@ -1,7 +1,7 @@
 import Realm from 'realm';
 import Category from '~/schemas/CategorySchema';
 import Entry from '~/schemas/EntrySchema';
-import {getDefaultCategories} from './Categories';
+import { getDefaultCategories } from './Categories';
 
 export const initDB = (realm) => {
   const categoriesLength = realm.objects('Category').length;
