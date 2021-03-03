@@ -1,4 +1,4 @@
-package com.smartmoney;
+package br.com.croschel.smartmoney_study;
 
 import android.app.Application;
 import android.util.Log;

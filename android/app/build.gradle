@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.smartmoney"
+        applicationId "br.com.croschel.smartmoney_study"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
