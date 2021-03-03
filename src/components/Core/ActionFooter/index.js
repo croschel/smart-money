@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
 export const ActionFooter = (props) => {
-  const {children} = props;
+  const { children } = props;
   return (
     <View style={styles.container}>
       <View style={styles.inner}>{children}</View>
@@ -13,17 +13,36 @@ export const ActionFooter = (props) => {
 };
 
 export const ActionPrimaryButton = (props) => {
-  const {title, onPress} = props;
+  const { title, onPress, size = 'small' } = props;
+
+  const handleSize = () => {
+    let fontSize = 18;
+    switch (size) {
+      case 'small':
+        break;
+      case 'medium':
+        fontSize = 26;
+        break;
+      case 'large':
+        fontSize = 32;
+        break;
+      default:
+        break;
+    }
+    return fontSize;
+  };
 
   return (
     <TouchableOpacity style={styles.primaryButton} onPress={onPress}>
-      <Text style={styles.primaryButtonText}>{title}</Text>
+      <Text style={[styles.primaryButtonText, { fontSize: handleSize() }]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
 
 export const ActionSecondaryButton = (props) => {
-  const {title, onPress} = props;
+  const { title, onPress } = props;
 
   return (
     <TouchableOpacity style={styles.secondaryButton} onPress={onPress}>

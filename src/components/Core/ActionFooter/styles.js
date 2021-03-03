@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '~/styles/colors';
 
 export default StyleSheet.create({
@@ -18,7 +18,6 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
   },
   primaryButtonText: {
-    fontSize: 18,
     textAlign: 'center',
     color: colors.green,
   },

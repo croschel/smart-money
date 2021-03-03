@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 import InputMoney from '~/components/Core/InputMoney';
 import { styles } from './styles';
 
-const WelcomeBalanceInput = (props) => {
+const InitBalanceInput = (props) => {
   const { amount, onChangeValue } = props;
   return (
-    <View>
+    <View style={styles.inputContainer}>
       <Text style={styles.label}>Informe seu saldo</Text>
       <InputMoney
         value={amount}
@@ -17,4 +17,4 @@ const WelcomeBalanceInput = (props) => {
   );
 };
 
-export default WelcomeBalanceInput;
+export default InitBalanceInput;

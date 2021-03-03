@@ -7,9 +7,6 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.background,
     padding: 10,
   },
-  content: {
-    flex: 1,
-  },
   logo: {
     alignItems: 'center',
     marginTop: 20,
