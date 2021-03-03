@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import Realm from 'realm';
 import Category from '~/schemas/CategorySchema';
 import Entry from '~/schemas/EntrySchema';
@@ -22,7 +23,9 @@ export const initDB = (realm) => {
           realm.create('Category', category);
         });
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log('DB was not initialized :: ', error);
+    }
   } else {
     // console.log('initDB :: categories already exists');
   }
