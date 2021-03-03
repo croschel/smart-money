@@ -3,7 +3,7 @@ import { View, Image } from 'react-native';
 import { styles } from './styles';
 import WelcomeMessage from './WelcomeMessage';
 import WelcomeBalanceInput from './WelcomeBalanceInput';
-import Logo from '~/assets/logo-white.png';
+import Logo from '~/assets/logo-money.png';
 import {
   ActionFooter,
   ActionPrimaryButton,
