@@ -10,6 +10,7 @@ import {
 } from '~/components/Core/ActionFooter';
 import { saveEntry } from '~/services/Entries';
 import useCategories from '~/hooks/useCategories';
+import { setInitialized } from '~/services/Welcome';
 
 const Welcome = (props) => {
   const { navigation } = props;
@@ -22,6 +23,7 @@ const Welcome = (props) => {
       category: initCategories,
       isInit: true,
     });
+    setInitialized();
     navigation.navigate('Main');
   };
 

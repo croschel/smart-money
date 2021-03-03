@@ -41,6 +41,7 @@ export const getRealm = async () => {
     schemaVersion: 4,
   });
   // dropDB(realm);
+  // cleanInitialized();
   initDB(realm);
 
   return realm;
