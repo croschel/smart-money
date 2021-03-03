@@ -14,7 +14,7 @@ export const amountFormat = (amount) => {
     signal = '-';
     multiplicator = -1;
   }
-  const formattedAmount = `${signal}$${
+  const formattedAmount = `${signal}R$ ${
     parseFloat(amount).toFixed(2) * multiplicator
   }`;
   const stringAmount = formattedAmount.toString();
