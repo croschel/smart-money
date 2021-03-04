@@ -4,7 +4,38 @@ import { BallWithouLine } from '~/resources/svg/';
 import { amountFormat } from '~/util';
 import styles from './styles';
 
-const EntrySummaryListItem = (props) => {
+interface EntrySummaryListItemProps {
+  entry: {
+    amount: number;
+    category: CategoryObject;
+  };
+}
+
+interface EntryObject {
+  id: string;
+  amount: number;
+  description: string;
+  entryAt: Date;
+  latitude: number;
+  longitude: number;
+  address: string;
+  photo: string;
+  isInit: boolean;
+  category: CategoryObject;
+}
+
+interface CategoryObject {
+  id: string;
+  name: string;
+  color: string;
+  isInit: boolean;
+  isDefault: boolean;
+  isCredit: boolean;
+  isDebit: boolean;
+  order: number;
+}
+
+const EntrySummaryListItem = (props: EntrySummaryListItemProps) => {
   const { entry } = props;
   return (
     <View style={styles.container}>

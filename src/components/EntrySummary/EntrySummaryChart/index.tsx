@@ -6,7 +6,27 @@ import { PieChart } from 'react-native-svg-charts';
 
 import styles from './styles';
 
-const EntrySummaryChart = (props) => {
+interface EntrySummaryChartProps {
+  balance: [
+    {
+      amount: number;
+      category: CategoryObject;
+    }
+  ];
+}
+
+interface CategoryObject {
+  id: string;
+  name: string;
+  color: string;
+  isInit: boolean;
+  isDefault: boolean;
+  isCredit: boolean;
+  isDebit: boolean;
+  order: number;
+}
+
+const EntrySummaryChart = (props: EntrySummaryChartProps) => {
   const { balance } = props;
 
   const chartData = balance.map(({ category, amount }) => ({

@@ -6,7 +6,12 @@ import Container from '~/components/Core/Container';
 import useBalanceSumByCategory from '~/hooks/useBalanceSumbyCategory';
 import styles from './styles';
 
-const EntrySummary = (props) => {
+interface EntrySummaryProps {
+  days: number;
+  onPressActionButton: () => void;
+}
+
+const EntrySummary = (props: EntrySummaryProps) => {
   const { days = 7, onPressActionButton } = props;
   const [balanceSum] = useBalanceSumByCategory(days);
 
