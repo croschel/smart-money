@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
-export const ActionFooter = (props) => {
+interface ActionFooterProps {
+  children: ReactNode;
+}
+interface ActionPrimaryButtonProps {
+  title: string;
+  onPress: () => void;
+  size?: 'small' | 'medium' | 'large';
+}
+
+interface ActionSecondaryButtonProps {
+  title: string;
+  onPress: () => void;
+}
+
+export const ActionFooter = (props: ActionFooterProps) => {
   const { children } = props;
   return (
     <View style={styles.container}>
@@ -12,7 +26,7 @@ export const ActionFooter = (props) => {
   );
 };
 
-export const ActionPrimaryButton = (props) => {
+export const ActionPrimaryButton = (props: ActionPrimaryButtonProps) => {
   const { title, onPress, size = 'small' } = props;
 
   const handleSize = () => {
@@ -41,7 +55,7 @@ export const ActionPrimaryButton = (props) => {
   );
 };
 
-export const ActionSecondaryButton = (props) => {
+export const ActionSecondaryButton = (props: ActionSecondaryButtonProps) => {
   const { title, onPress } = props;
 
   return (

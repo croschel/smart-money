@@ -4,20 +4,28 @@ import { SafeAreaView, TouchableOpacity, Text } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import { styles } from './styles';
 
-const InputMoney = (props) => {
+interface InputMoneyProps {
+  value: string;
+  onChangeValue: (res: number) => void;
+  startWithDebt: boolean;
+  onChangeDebit: (res: boolean) => void;
+}
+
+const InputMoney = (props: InputMoneyProps) => {
   const { value, onChangeValue, startWithDebt = true, onChangeDebit } = props;
+  const floatValue = parseFloat(value);
 
   const setDefaultDebit = () => {
-    if (value === 0) {
+    if (floatValue === 0) {
       return startWithDebt ? -1 : 1;
     }
-    return value <= 0 ? -1 : 1;
+    return floatValue <= 0 ? -1 : 1;
   };
   const setDefaultPrefix = () => {
-    if (value === 0) {
+    if (floatValue === 0) {
       return startWithDebt ? '-' : '';
     }
-    return value <= 0 ? '-' : '';
+    return floatValue <= 0 ? '-' : '';
   };
 
   const [debit, setDebit] = useState(setDefaultDebit);
@@ -39,7 +47,7 @@ const InputMoney = (props) => {
       setDebitPrefix('-');
       onChangeDebit && onChangeDebit(true);
     }
-    onChangeValue(value * -1);
+    onChangeValue(floatValue * -1);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -57,8 +65,8 @@ const InputMoney = (props) => {
         options={optionsInput}
         value={value}
         includeRawValueInChangeText
-        onChangeText={(maskedValue, rawValue) => {
-          onChangeValue(rawValue * debit);
+        onChangeText={(maskedValue: string, rawValue: string) => {
+          onChangeValue(parseFloat(rawValue) * debit);
         }}
       />
     </SafeAreaView>

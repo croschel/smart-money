@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles';
 
-const Container = ({ children, title, actionLabelText, actionButtonText, onPressActionButton }) => {
+interface ContainerProps {
+  children: ReactNode;
+  title: string;
+  actionLabelText: string;
+  actionButtonText: string;
+  onPressActionButton: () => void;
+}
+
+const Container = (props: ContainerProps) => {
+  const {
+    children,
+    title,
+    actionLabelText,
+    actionButtonText,
+    onPressActionButton,
+  } = props;
   return (
     <View style={styles.container}>
-      {title && (
-        <Text style={styles.title}>{title}</Text>
-      )}
+      {title && <Text style={styles.title}>{title}</Text>}
 
       {children}
 
@@ -30,7 +43,6 @@ const Container = ({ children, title, actionLabelText, actionButtonText, onPress
         </View>
       )}
     </View>
-  )
-}
-
+  );
+};
 export default Container;

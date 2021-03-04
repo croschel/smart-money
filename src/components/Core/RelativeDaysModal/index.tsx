@@ -6,7 +6,13 @@ import {
 } from '~/components/Core/ActionFooter';
 import styles from './styles';
 
-const RelativeDaysModal = (props) => {
+interface RelativeDaysModal {
+  isVisible: boolean;
+  onConfirm: (item: number) => void;
+  onCancel: () => void;
+}
+
+const RelativeDaysModal = (props: RelativeDaysModal) => {
   const { isVisible, onConfirm, onCancel } = props;
   const relativeDays = [1, 3, 7, 15, 21, 30, 45, 60, 90, 180, 365];
   return (
