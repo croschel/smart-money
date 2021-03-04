@@ -7,7 +7,39 @@ import colors from '~/styles/colors';
 import styles from './styles';
 import { convertDateDetails, amountFormat } from '~/util';
 
-const EntryListItem = (props) => {
+interface EntryListItemProps {
+  entry: EntryObject;
+  isFirstItem: boolean;
+  isLastItem: boolean;
+  onEntryPress: (entry: EntryObject) => void;
+}
+
+interface EntryObject {
+  id: string;
+  amount: number;
+  description: string;
+  entryAt: Date;
+  latitude: number;
+  longitude: number;
+  address: string;
+  photo: string;
+  isInit: boolean;
+  category: CategoryObject;
+}
+
+interface CategoryObject {
+  id: string;
+  name: string;
+  color: string;
+  isInit: boolean;
+  isDefault: boolean;
+  isCredit: boolean;
+  isDebit: boolean;
+  order: number;
+  entries: EntryObject;
+}
+
+const EntryListItem = (props: EntryListItemProps) => {
   const { entry, isFirstItem, isLastItem, onEntryPress } = props;
   const { address, category, description, entryAt } = entry;
 

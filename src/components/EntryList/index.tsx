@@ -5,19 +5,51 @@ import EntryListItem from './EntryListItem';
 import useEntries from '~/hooks/useEntries';
 // import styles from './styles';
 
-const EntryList = (props) => {
+interface EntryListItemProps {
+  onEntryPress: (entry: EntryObject) => void;
+  onPressActionButton: () => void;
+  days: number;
+  category: CategoryObject;
+}
+
+interface EntryObject {
+  id: string;
+  amount: number;
+  description: string;
+  entryAt: Date;
+  latitude: number;
+  longitude: number;
+  address: string;
+  photo: string;
+  isInit: boolean;
+  category: CategoryObject;
+}
+
+interface CategoryObject {
+  id: string;
+  name: string;
+  color: string;
+  isInit: boolean;
+  isDefault: boolean;
+  isCredit: boolean;
+  isDebit: boolean;
+  order: number;
+  entries: EntryObject;
+}
+
+const EntryList = (props: EntryListItemProps) => {
   // eslint-disable-next-line object-curly-newline
   const { onEntryPress, onPressActionButton, days = 7, category } = props;
   const [entries] = useEntries(days, category);
 
-  const checkBallFirstPosition = (index) => {
+  const checkBallFirstPosition = (index: number) => {
     if (index === 0) {
       return true;
     }
     return false;
   };
 
-  const checkBallLastPosition = (index, arraySize) => {
+  const checkBallLastPosition = (index: number, arraySize: number) => {
     if (index === arraySize - 1) {
       return true;
     }
@@ -33,7 +65,7 @@ const EntryList = (props) => {
     >
       <FlatList
         data={entries}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item: EntryObject) => item.id}
         renderItem={({ item, index }) => (
           <EntryListItem
             entry={item}
