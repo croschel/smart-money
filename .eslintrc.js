@@ -27,7 +27,10 @@ module.exports = {
     'react/state-in-constructor': 'off',
     'react/prop-types': ['off'],
     'comma-dangle': ['off'],
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': [
+      'error',
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
     'import/prefer-default-export': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'unused-imports/no-unused-imports': 'error',
