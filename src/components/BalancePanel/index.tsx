@@ -8,7 +8,11 @@ import colors from '~/styles/colors';
 
 import styles from './styles';
 
-const BalanceLabel = (props) => {
+interface BalanceLabelProps {
+  onNewEntryPress: () => void;
+}
+
+const BalanceLabel = (props: BalanceLabelProps) => {
   const { onNewEntryPress } = props;
   return (
     <View style={styles.container}>

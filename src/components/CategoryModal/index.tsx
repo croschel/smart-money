@@ -12,11 +12,29 @@ import {
 } from '~/services/Categories';
 import styles from './styles';
 
-const CategoryModal = (props) => {
+interface CategoryObject {
+  id: string;
+  name: string;
+  color: string;
+  isInit: boolean;
+  isDefault: boolean;
+  isCredit: boolean;
+  isDebit: boolean;
+  order: number;
+}
+interface CategoryModalProps {
+  debit: boolean;
+  filter: boolean;
+  modalVisible: boolean;
+  onSelectCategory: (item: CategoryObject) => void;
+  onClose: () => void;
+}
+
+const CategoryModal = (props: CategoryModalProps) => {
   // eslint-disable-next-line object-curly-newline
   const { debit, filter, onSelectCategory, onClose, modalVisible } = props;
 
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<CategoryObject[]>([]);
 
   useEffect(() => {
     async function loadCategories() {
@@ -28,7 +46,7 @@ const CategoryModal = (props) => {
       } else {
         data = await getCreditCategories();
       }
-
+      console.log('LoadCategories :: ', JSON.stringify(data));
       setCategories(data);
     }
     loadCategories();
@@ -39,7 +57,7 @@ const CategoryModal = (props) => {
       <View style={styles.modal}>
         <FlatList
           data={categories}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item: CategoryObject) => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => onSelectCategory(item)}
