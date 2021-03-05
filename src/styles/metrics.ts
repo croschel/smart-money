@@ -1,6 +1,7 @@
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 
-export default metrics = {
+const metrics = {
   width: Math.round(Dimensions.get('window').width),
   height: Math.round(Dimensions.get('window').height),
 };
+export default metrics;
