@@ -7,10 +7,10 @@ import {
 } from '~/services/Categories';
 
 const useCategories = () => {
-  const [debitCategories, setDebitCategories] = useState();
-  const [creditCategories, setCreditCategories] = useState();
-  const [allCategories, setAllCategories] = useState();
-  const [initCategories, setInitCategories] = useState();
+  const [debitCategories, setDebitCategories] = useState<string[]>([]);
+  const [creditCategories, setCreditCategories] = useState<string[]>([]);
+  const [allCategories, setAllCategories] = useState<string[]>([]);
+  const [initCategories, setInitCategories] = useState<string[]>([]);
 
   useEffect(() => {
     const loadDebitCategories = async () => {

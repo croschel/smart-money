@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getBalanceSumByDate } from '~/services/Balance';
 
 const useBalanceSumByDate = (days = 7) => {
-  const [balanceSum, setBalanceSum] = useState([]);
+  const [balanceSum, setBalanceSum] = useState<number[]>([]);
 
   useEffect(() => {
     async function loadBalanceSumByDate() {
