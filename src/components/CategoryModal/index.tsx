@@ -46,7 +46,7 @@ const CategoryModal = (props: CategoryModalProps) => {
       } else {
         data = await getCreditCategories();
       }
-      console.log('LoadCategories :: ', JSON.stringify(data));
+      // console.log('LoadCategories :: ', JSON.stringify(data));
       setCategories(data);
     }
     loadCategories();

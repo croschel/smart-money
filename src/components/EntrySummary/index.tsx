@@ -14,7 +14,7 @@ interface EntrySummaryProps {
 const EntrySummary = (props: EntrySummaryProps) => {
   const { days = 7, onPressActionButton } = props;
   const [balanceSum] = useBalanceSumByCategory(days);
-
+  // console.log('balanceSum on Entry Summary :: ', balanceSum);
   return (
     <Container
       title="Categorias"

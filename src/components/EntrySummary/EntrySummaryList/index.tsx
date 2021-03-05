@@ -25,7 +25,7 @@ interface CategoryObject {
 
 const EntrySummaryList = (props: EntrySummaryListProps) => {
   const { balance } = props;
-  console.log('Balance EntrySummaryList :: ', balance);
+  // console.log('Balance EntrySummaryList :: ', balance);
   return (
     <View>
       <FlatList
