@@ -1,13 +1,13 @@
 import { format, subDays } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
-export const convertDateDetails = (parsedDate) => {
+export const convertDateDetails = (parsedDate: Date) => {
   const response = format(parsedDate, "dd'/'MM HH':'mm", { locale: pt });
 
   return response;
 };
 
-export const amountFormat = (amount) => {
+export const amountFormat = (amount: number) => {
   let signal = '';
   let multiplicator = 1;
   if (amount < 0) {
@@ -15,19 +15,19 @@ export const amountFormat = (amount) => {
     multiplicator = -1;
   }
   const formattedAmount = `${signal}R$ ${
-    parseFloat(amount).toFixed(2) * multiplicator
+    <any>amount.toFixed(2) * multiplicator
   }`;
   const stringAmount = formattedAmount.toString();
   const formatStringAmount = stringAmount.replace('.', ',');
   return formatStringAmount;
 };
 
-export const getSubDays = (qntDays) => {
+export const getSubDays = (qntDays: number) => {
   const date = subDays(new Date(), qntDays);
   return date;
 };
 
-export const formatSingleNumber = (days) => {
+export const formatSingleNumber = (days: number) => {
   let response;
   switch (days) {
     case 1:
