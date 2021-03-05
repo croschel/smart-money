@@ -4,8 +4,31 @@ import { getRealm } from './Realm';
 import { getUUID } from '~/services/UUID';
 import { getSubDays } from '~/util';
 
-export const getEntries = async (days, category) => {
-  let realm = await getRealm();
+interface CategoryObject {
+  id: string;
+  name: string;
+  color: string;
+  isInit: boolean;
+  isDefault: boolean;
+  isCredit: boolean;
+  isDebit: boolean;
+  order: number;
+}
+interface EntryObject {
+  id: string;
+  amount: number;
+  description: string;
+  entryAt: Date;
+  latitude: number;
+  longitude: number;
+  address: string;
+  photo: string;
+  isInit: boolean;
+  category: CategoryObject;
+}
+
+export const getEntries = async (days: number, category: CategoryObject) => {
+  let realm: Realm.ObjectPropsType = await getRealm();
 
   realm = realm.objects('Entry');
 
@@ -25,7 +48,7 @@ export const getEntries = async (days, category) => {
   return entries;
 };
 
-export const saveEntry = async (value, entry = {}) => {
+export const saveEntry = async (value: EntryObject, entry: EntryObject) => {
   const realm = await getRealm();
   let data = {};
   try {
@@ -54,7 +77,7 @@ export const saveEntry = async (value, entry = {}) => {
   return data;
 };
 
-export const deleteEntry = async (entry) => {
+export const deleteEntry = async (entry: EntryObject) => {
   const realm = await getRealm();
 
   try {

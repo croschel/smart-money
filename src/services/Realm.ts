@@ -4,7 +4,7 @@ import Category from '~/schemas/CategorySchema';
 import Entry from '~/schemas/EntrySchema';
 import { getDefaultCategories } from './Categories';
 
-export const initDB = (realm) => {
+export const initDB = (realm: Realm.ObjectPropsType) => {
   const categoriesLength = realm.objects('Category').length;
 
   // console.log('Qnt de categorias: ', categoriesLength);
@@ -31,7 +31,7 @@ export const initDB = (realm) => {
   }
 };
 
-export const dropDB = (realm) => {
+export const dropDB = (realm: Realm.ObjectPropsType) => {
   console.log('dropDB :: droppping DB...');
   realm.write(() => {
     realm.deleteAll();

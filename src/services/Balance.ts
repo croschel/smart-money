@@ -1,7 +1,31 @@
 import _ from 'lodash';
+import { any } from 'prop-types';
 import { getRealm } from '~/services/Realm';
 
 import moment from '~/vendors/moment';
+
+interface CategoryObject {
+  id: string;
+  name: string;
+  color: string;
+  isInit: boolean;
+  isDefault: boolean;
+  isCredit: boolean;
+  isDebit: boolean;
+  order: number;
+}
+interface EntryObject {
+  id: string;
+  amount: number;
+  description: string;
+  entryAt: Date;
+  latitude: number;
+  longitude: number;
+  address: string;
+  photo: string;
+  isInit: boolean;
+  category: CategoryObject;
+}
 
 export const getBalance = async (untilDay = 0) => {
   const realm = await getRealm();
@@ -17,8 +41,8 @@ export const getBalance = async (untilDay = 0) => {
   return balance;
 };
 
-export const getBalanceSumByDate = async (days) => {
-  const realm = await getRealm();
+export const getBalanceSumByDate = async (days: number) => {
+  const realm: Realm.ObjectPropsType = await getRealm();
   const startBalance = await getBalance(days);
   let entries = realm.objects('Entry');
 
@@ -43,8 +67,11 @@ export const getBalanceSumByDate = async (days) => {
   return entries;
 };
 
-export const getBalanceSumByCategory = async (days, showOther = true) => {
-  const realm = await getRealm();
+export const getBalanceSumByCategory = async (
+  days: number,
+  showOther = true
+) => {
+  const realm: Realm.ObjectPropsType = await getRealm();
   let entries = realm.objects('Entry');
 
   if (days > 0) {
