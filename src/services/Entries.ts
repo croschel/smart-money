@@ -15,16 +15,16 @@ interface CategoryObject {
   order: number;
 }
 interface EntryObject {
-  id: string;
-  amount: number;
-  description: string;
-  entryAt: Date;
-  latitude: number;
-  longitude: number;
-  address: string;
-  photo: string;
-  isInit: boolean;
-  category: CategoryObject;
+  id?: string;
+  amount?: number;
+  description?: string;
+  entryAt?: Date;
+  latitude?: number;
+  longitude?: number;
+  address?: string;
+  photo?: string;
+  isInit?: boolean;
+  category?: CategoryObject;
 }
 
 export const getEntries = async (days: number, category: CategoryObject) => {
@@ -48,7 +48,10 @@ export const getEntries = async (days: number, category: CategoryObject) => {
   return entries;
 };
 
-export const saveEntry = async (value: EntryObject, entry: EntryObject) => {
+export const saveEntry = async (
+  value: EntryObject,
+  entry: EntryObject = {}
+) => {
   const realm = await getRealm();
   let data = {};
   try {
