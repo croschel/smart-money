@@ -7,8 +7,17 @@ import {
   ActionFooter,
   ActionPrimaryButton,
 } from '~/components/Core/ActionFooter';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 
-const Welcome = (props) => {
+interface WelcomeProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
+
+const Welcome = (props: WelcomeProps) => {
   const { navigation } = props;
 
   const onPressNext = () => {
