@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "82531988206",
+    "project_id": "smartmoney-61dcd",
+    "storage_bucket": "smartmoney-61dcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82531988206:android:a6aa028241013f2f37f9ff",
+        "android_client_info": {
+          "package_name": "br.com.croschel.smartmoney_study"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82531988206-1c6id6qdcunl554hvudota9soa9s7k5b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARxcwo-M8WVCyIzfJ2FNz9tDhHDeHtQBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82531988206-1c6id6qdcunl554hvudota9soa9s7k5b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
