@@ -5,38 +5,18 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Ball } from '~/resources/svg';
 import colors from '~/styles/colors';
 import styles from './styles';
-import { convertDateDetails, amountFormat } from '~/util';
+import {
+  convertDateDetails,
+  amountFormat,
+  convertDateDetailsTimestamp,
+} from '~/util';
+import { EntryObject } from '~/../declarations';
 
 interface EntryListItemProps {
   entry: EntryObject;
   isFirstItem: boolean;
   isLastItem: boolean;
   onEntryPress: (entry: EntryObject) => void;
-}
-
-interface EntryObject {
-  id: string;
-  amount: number;
-  description: string;
-  entryAt: Date;
-  latitude: number;
-  longitude: number;
-  address: string;
-  photo: string;
-  isInit: boolean;
-  category: CategoryObject;
-}
-
-interface CategoryObject {
-  id: string;
-  name: string;
-  color: string;
-  isInit: boolean;
-  isDefault: boolean;
-  isCredit: boolean;
-  isDebit: boolean;
-  order: number;
-  entries: EntryObject;
 }
 
 const EntryListItem = (props: EntryListItemProps) => {
@@ -72,7 +52,7 @@ const EntryListItem = (props: EntryListItemProps) => {
               size={16}
             />
             <Text style={styles.entryAtText}>
-              {convertDateDetails(entryAt)}
+              {convertDateDetailsTimestamp(entryAt)}
             </Text>
           </View>
           {address && (

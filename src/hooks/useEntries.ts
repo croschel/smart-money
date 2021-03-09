@@ -1,28 +1,6 @@
 import { useEffect, useState } from 'react';
+import { CategoryObject, EntryObject } from '~/../declarations';
 import { getEntries, saveEntry, deleteEntry } from '~/services/Entries';
-
-interface CategoryObject {
-  id: string;
-  name: string;
-  color: string;
-  isInit: boolean;
-  isDefault: boolean;
-  isCredit: boolean;
-  isDebit: boolean;
-  order: number;
-}
-interface EntryObject {
-  id: string;
-  amount: number;
-  description: string;
-  entryAt: Date;
-  latitude: number;
-  longitude: number;
-  address: string;
-  photo: string;
-  isInit: boolean;
-  category: CategoryObject;
-}
 
 const useEntries = (days = 7, category: CategoryObject) => {
   const [entries, setEntries] = useState<EntryObject[]>([]);
@@ -30,6 +8,7 @@ const useEntries = (days = 7, category: CategoryObject) => {
   useEffect(() => {
     async function loadEntries() {
       const data = await getEntries(days, category);
+      // @ts-ignore
       setEntries(data);
     }
     loadEntries();

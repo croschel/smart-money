@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import Container from '~/components/Core/Container';
 import EntryListItem from './EntryListItem';
 import useEntries from '~/hooks/useEntries';
+import { CategoryObject, EntryObject } from '~/../declarations';
 // import styles from './styles';
 
 interface EntryListItemProps {
@@ -10,31 +11,6 @@ interface EntryListItemProps {
   onPressActionButton: () => void;
   days: number;
   category: CategoryObject;
-}
-
-interface EntryObject {
-  id: string;
-  amount: number;
-  description: string;
-  entryAt: Date;
-  latitude: number;
-  longitude: number;
-  address: string;
-  photo: string;
-  isInit: boolean;
-  category: CategoryObject;
-}
-
-interface CategoryObject {
-  id: string;
-  name: string;
-  color: string;
-  isInit: boolean;
-  isDefault: boolean;
-  isCredit: boolean;
-  isDebit: boolean;
-  order: number;
-  entries: EntryObject;
 }
 
 const EntryList = (props: EntryListItemProps) => {
@@ -55,7 +31,7 @@ const EntryList = (props: EntryListItemProps) => {
     }
     return false;
   };
-
+  console.log('entries details on convertFunction :: ', entries);
   return (
     <Container
       title="Últimos Lançamentos"
@@ -64,6 +40,7 @@ const EntryList = (props: EntryListItemProps) => {
       onPressActionButton={onPressActionButton}
     >
       <FlatList
+        //@ts-ignore
         data={entries}
         keyExtractor={(item: EntryObject) => item.id}
         renderItem={({ item, index }) => (

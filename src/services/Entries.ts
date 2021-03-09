@@ -1,50 +1,38 @@
 import { Alert } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { getRealm } from './Realm';
-import { getUUID } from '~/services/UUID';
 import { getSubDays } from '~/util';
-
-interface CategoryObject {
-  id: string;
-  name: string;
-  color: string;
-  isInit: boolean;
-  isDefault: boolean;
-  isCredit: boolean;
-  isDebit: boolean;
-  order: number;
-}
-interface EntryObject {
-  id?: string;
-  amount?: number;
-  description?: string;
-  entryAt?: Date;
-  latitude?: number;
-  longitude?: number;
-  address?: string;
-  photo?: string;
-  isInit?: boolean;
-  category?: CategoryObject;
-}
+import { CategoryObject, EntryObject } from '~/../declarations';
 
 export const getEntries = async (days: number, category: CategoryObject) => {
-  let realm: Realm.ObjectPropsType = await getRealm();
-
-  realm = realm.objects('Entry');
+  let querySnapshot;
 
   if (days > 0) {
     const date = getSubDays(days);
-    realm = realm.filtered('entryAt >= $0', date);
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .startAt(date)
+      .get();
+  } else {
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .get();
   }
+
+  let entries = querySnapshot.docs.map((documentSnapshot) => {
+    return { ...documentSnapshot.data(), id: documentSnapshot.id };
+  });
   if (category && category.id) {
     // console.log('getEntries :: category ', JSON.stringify(category));
-
-    realm = realm.filtered('category.id == $0', category.id);
+    entries = entries.filter(
+      //@ts-ignore
+      (entry: EntryObject) => entry.category.id === category.id
+    );
   }
 
-  const entries = realm.sorted('entryAt', true);
-
-  // console.log('getEntries :: entries', JSON.stringify(entries));
+  console.log('getEntries :: entries', JSON.stringify(entries));
   return entries;
 };
 

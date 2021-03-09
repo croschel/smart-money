@@ -1,8 +1,22 @@
 import { format, subDays } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
+interface convertDateTimestampProps {
+  nanoseconds: number;
+  seconds: number;
+}
+
 export const convertDateDetails = (parsedDate: Date) => {
   const response = format(parsedDate, "dd'/'MM HH':'mm", { locale: pt });
+
+  return response;
+};
+
+export const convertDateDetailsTimestamp = (
+  timestampDate: convertDateTimestampProps
+) => {
+  const dateFormatted = timestampDate.seconds * 1000;
+  const response = format(dateFormatted, "dd'/'MM HH':'mm", { locale: pt });
 
   return response;
 };

@@ -1,32 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import _ from 'lodash';
-import { any } from 'prop-types';
-import { getRealm } from '~/services/Realm';
 
 import moment from '~/vendors/moment';
-
-interface CategoryObject {
-  id: string;
-  name: string;
-  color: string;
-  isInit: boolean;
-  isDefault: boolean;
-  isCredit: boolean;
-  isDebit: boolean;
-  order: number;
-}
-interface EntryObject {
-  id: string;
-  amount: number;
-  description: string;
-  entryAt: Date;
-  latitude: number;
-  longitude: number;
-  address: string;
-  photo: string;
-  isInit: boolean;
-  category: CategoryObject;
-}
 
 export const getBalance = async (untilDay = 0) => {
   let querySnapshot;
@@ -69,6 +44,7 @@ export const getBalanceSumByDate = async (days: number) => {
   let entries = querySnapshot.docs.map((documentSnapshot) =>
     documentSnapshot.data()
   );
+  // @ts-ignore
   entries = _(entries)
     .groupBy(({ entryAt }) =>
       // eslint-disable-next-line implicit-arrow-linebreak
@@ -108,7 +84,7 @@ export const getBalanceSumByCategory = async (
   let entries = querySnapshot.docs.map((documentSnapshot) =>
     documentSnapshot.data()
   );
-
+  // @ts-ignore
   entries = _(entries)
     .groupBy(({ category: { id } }) => id)
     .map((entry) => ({
