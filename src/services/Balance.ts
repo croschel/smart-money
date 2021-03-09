@@ -1,3 +1,4 @@
+import firestore from '@react-native-firebase/firestore';
 import _ from 'lodash';
 import { any } from 'prop-types';
 import { getRealm } from '~/services/Realm';
@@ -28,29 +29,46 @@ interface EntryObject {
 }
 
 export const getBalance = async (untilDay = 0) => {
-  const realm = await getRealm();
-  let entries = realm.objects('Entry');
+  let querySnapshot;
 
   if (untilDay > 0) {
     const date = moment().subtract(untilDay, 'days').toDate();
-    entries = entries.filtered('entryAt < $0', date);
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .endBefore(date)
+      .get();
+  } else {
+    querySnapshot = await firestore().collection('entries').get();
   }
 
-  const balance = entries.sum('amount');
-  console.log('getBalance :: ', balance);
-  return balance;
+  // console.log('getBalance Firebase :: ', querySnapshot);
+  return _(querySnapshot.docs).reduce((total, doc) => {
+    return total + doc.data().amount;
+  }, 0);
 };
 
 export const getBalanceSumByDate = async (days: number) => {
-  const realm: Realm.ObjectPropsType = await getRealm();
-  const startBalance = await getBalance(days);
-  let entries = realm.objects('Entry');
+  let querySnapshot;
+  const startBalance = (await getBalance(days)) || 0;
 
   if (days > 0) {
     const date = moment().subtract(days, 'days').toDate();
-    entries = entries.filtered('entryAt >= $0', date);
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .startAt(date)
+      .get();
+  } else {
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .get();
   }
-  entries = entries.sorted('entryAt');
+
+  let entries = querySnapshot.docs.map((documentSnapshot) =>
+    documentSnapshot.data()
+  );
   entries = _(entries)
     .groupBy(({ entryAt }) =>
       // eslint-disable-next-line implicit-arrow-linebreak
@@ -71,13 +89,26 @@ export const getBalanceSumByCategory = async (
   days: number,
   showOther = true
 ) => {
-  const realm: Realm.ObjectPropsType = await getRealm();
-  let entries = realm.objects('Entry');
+  let querySnapshot;
 
   if (days > 0) {
     const date = moment().subtract(days, 'days').toDate();
-    entries = entries.filtered('entryAt >= $0', date);
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .startAt(date)
+      .get();
+  } else {
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .get();
   }
+
+  let entries = querySnapshot.docs.map((documentSnapshot) =>
+    documentSnapshot.data()
+  );
+
   entries = _(entries)
     .groupBy(({ category: { id } }) => id)
     .map((entry) => ({
