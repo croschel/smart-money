@@ -1,6 +1,5 @@
 import { Alert } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import { getRealm } from './Realm';
 import { getSubDays } from '~/util';
 import { CategoryObject, EntryObject } from '~/../declarations';
 
@@ -32,7 +31,7 @@ export const getEntries = async (days: number, category: CategoryObject) => {
     );
   }
 
-  console.log('getEntries :: entries', JSON.stringify(entries));
+  // console.log('getEntries :: entries', JSON.stringify(entries));
   return entries;
 };
 
@@ -60,17 +59,40 @@ export const saveEntry = async (entry: EntryObject) => {
   return data;
 };
 
-export const deleteEntry = async (entry: EntryObject) => {
-  const realm = await getRealm();
-
+export const updateEntry = async (entry: EntryObject, id: string) => {
+  let data = {};
   try {
-    realm.write(() => {
-      realm.delete(entry);
-    });
+    data = {
+      description: entry.category.name,
+      amount: entry.amount,
+      address: entry.address,
+      latitude: entry.latitude,
+      longitude: entry.longitude,
+      entryAt: entry.entryAt,
+      photo: entry.photo,
+      category: entry.category,
+      isInit: entry.isInit || false,
+    };
+
+    await firestore().collection('entries').doc(id).update(data);
+
+    console.log('updateEntry :: data: ', JSON.stringify(data));
   } catch (error) {
-    /* console.error(
-      `deleteEntry :: error on delte object: ${JSON.stringify(this.data)}`
-    ); */
+    console.error(
+      `updateEntry :: error on save object: ${JSON.stringify(data)}`
+    );
+    Alert.alert('Erro ao salvar os dados de lançamento');
+  }
+  return data;
+};
+
+export const deleteEntry = async (entry: EntryObject) => {
+  try {
+    await firestore().collection('entries').doc(entry.id).delete();
+  } catch (error) {
+    console.error(
+      `deleteEntry :: error on delte object: ${JSON.stringify(error)}`
+    );
     Alert.alert('Erro ao deletar os dados de lançamento');
   }
 };

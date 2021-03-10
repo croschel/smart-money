@@ -31,7 +31,7 @@ const EntryList = (props: EntryListItemProps) => {
     }
     return false;
   };
-  console.log('entries details on convertFunction :: ', entries);
+  // console.log('entries details on convertFunction :: ', entries);
   return (
     <Container
       title="Últimos Lançamentos"

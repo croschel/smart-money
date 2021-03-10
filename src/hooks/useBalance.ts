@@ -8,7 +8,7 @@ const useBalance = () => {
   useEffect(() => {
     async function loadBalance() {
       const value = await getBalance();
-      console.log('Balance on useBalance :: ', value);
+      // @ts-ignore
       setBalance(amountFormat(value));
     }
     loadBalance();

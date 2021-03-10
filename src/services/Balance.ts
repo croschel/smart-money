@@ -48,7 +48,7 @@ export const getBalanceSumByDate = async (days: number) => {
   entries = _(entries)
     .groupBy(({ entryAt }) =>
       // eslint-disable-next-line implicit-arrow-linebreak
-      moment(entryAt).format('YYYYMMDD')
+      moment(entryAt.toDate()).format('YYYYMMDD')
     )
     .map((entry) => _.sumBy(entry, 'amount'))
     .map(

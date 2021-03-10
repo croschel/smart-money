@@ -16,7 +16,7 @@ import useEntries from '~/hooks/useEntries';
 import styles from './styles';
 
 const NewEntry = ({ navigation }) => {
-  const [, saveEntry, deleteEntry] = useEntries();
+  const [, saveEntry, updateEntry, deleteEntry] = useEntries();
 
   const entry = navigation.getParam('entry', {
     id: null,
@@ -31,13 +31,15 @@ const NewEntry = ({ navigation }) => {
       name: 'Selecione',
     },
   });
-
+  const isEdit = entry.id !== null;
   const [debit, setDebit] = useState(entry.amount <= 0);
   const [amount, setAmount] = useState(
     `${parseFloat(entry.amount).toFixed(2)}`
   );
   const [category, setCategory] = useState(entry.category);
-  const [entryAt, setEntryAt] = useState(entry.entryAt);
+  const [entryAt, setEntryAt] = useState(
+    isEdit ? entry.entryAt.toDate() : entry.entryAt
+  );
   const [addressState, setAddressState] = useState(entry.address);
   const [photo, setPhoto] = useState(entry.photo);
   const [latitudeState, setLatitudeState] = useState(entry.latitude);
@@ -64,7 +66,11 @@ const NewEntry = ({ navigation }) => {
       entryAt,
       photo,
     };
-    saveEntry(value, entry);
+    if (isEdit) {
+      updateEntry(value, entry.id);
+    } else {
+      saveEntry(value);
+    }
     onClose();
   };
 

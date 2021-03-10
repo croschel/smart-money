@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { CategoryObject, EntryObject } from '~/../declarations';
-import { getEntries, saveEntry, deleteEntry } from '~/services/Entries';
+import {
+  getEntries,
+  saveEntry,
+  updateEntry,
+  deleteEntry,
+} from '~/services/Entries';
 
 const useEntries = (days = 7, category: CategoryObject) => {
   const [entries, setEntries] = useState<EntryObject[]>([]);
@@ -13,7 +18,7 @@ const useEntries = (days = 7, category: CategoryObject) => {
     }
     loadEntries();
   }, [days, category]);
-  return [entries, saveEntry, deleteEntry];
+  return [entries, saveEntry, updateEntry, deleteEntry];
 };
 
 export default useEntries;
