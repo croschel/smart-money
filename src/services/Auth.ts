@@ -36,7 +36,7 @@ export const clientRegister = async (data: signUpData) => {
       password
     );
     const { uid } = userInfo.user;
-    // setUserAuth(uid);
+    setUserAuth(uid);
     await firestore().collection('users').doc(uid).set({
       name,
     });

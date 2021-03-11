@@ -1,17 +1,30 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import firestore from '@react-native-firebase/firestore';
+import { getUserAuth } from './Auth';
 
 export const isInitialized = async () => {
-  const openingBalance = await AsyncStorage.getItem('openingBalance');
-  // console.log('AsyncStorage Test :: ', openingBalance);
+  let openningBalance = false;
+  const uid = await getUserAuth();
+  if (uid) {
+    const userInfo = await firestore().collection('users').doc(uid).get();
+    openningBalance = userInfo.data().openningBalance;
+  }
 
-  return openingBalance !== null && openingBalance === 'true';
+  return openningBalance !== null && openningBalance === true;
 };
 
 export const setInitialized = async () => {
-  const item = await AsyncStorage.setItem('openingBalance', 'true');
+  const uid = await getUserAuth();
+  await firestore()
+    .collection('users')
+    .doc(uid)
+    .set({ openningBalance: true }, { merge: true });
   // console.log('AsyncStorage Test :: ', item);
 };
 
 export const cleanInitialized = async () => {
-  await AsyncStorage.removeItem('openingBalance');
+  const uid = await getUserAuth();
+  await firestore()
+    .collection('users')
+    .doc(uid)
+    .set({ openningBalance: false }, { merge: true });
 };

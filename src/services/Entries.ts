@@ -2,20 +2,24 @@ import { Alert } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { getSubDays } from '~/util';
 import { CategoryObject, EntryObject } from '~/../declarations';
+import { getUserAuth } from './Auth';
 
 export const getEntries = async (days: number, category: CategoryObject) => {
   let querySnapshot;
+  const uid = await getUserAuth();
 
   if (days > 0) {
     const date = getSubDays(days);
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', uid)
       .orderBy('entryAt')
       .startAt(date)
       .get();
   } else {
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', uid)
       .orderBy('entryAt')
       .get();
   }
@@ -37,8 +41,10 @@ export const getEntries = async (days: number, category: CategoryObject) => {
 
 export const saveEntry = async (entry: EntryObject) => {
   let data = {};
+  const uid = await getUserAuth();
   try {
     data = {
+      userId: uid,
       description: entry.category.name,
       amount: entry.amount,
       address: entry.address,
@@ -61,8 +67,10 @@ export const saveEntry = async (entry: EntryObject) => {
 
 export const updateEntry = async (entry: EntryObject, id: string) => {
   let data = {};
+  const uid = await getUserAuth();
   try {
     data = {
+      userId: uid,
       description: entry.category.name,
       amount: entry.amount,
       address: entry.address,

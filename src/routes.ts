@@ -12,10 +12,13 @@ export default (isLogged: boolean) =>
   createAppContainer(
     createSwitchNavigator(
       {
-        Sign: createSwitchNavigator({
-          SignIn,
-          SignUp,
-        }),
+        Sign: createSwitchNavigator(
+          {
+            SignIn,
+            SignUp,
+          },
+          { backBehavior: 'history' }
+        ),
         App: createSwitchNavigator(
           {
             Loading,
@@ -27,6 +30,7 @@ export default (isLogged: boolean) =>
           },
           {
             initialRouteName: 'Loading',
+            backBehavior: 'history',
           }
         ),
       },
