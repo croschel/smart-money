@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import CreateRoute from '~/routes';
 import colors from '~/styles/colors';
+import { isLogged } from './services/Auth';
 import { isInitialized } from './services/Welcome';
 
 const styles = StyleSheet.create({
@@ -11,16 +12,18 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
-  const isLogged = false;
+  const [userLogged, setUserLogged] = useState(false);
+  useEffect(() => {
+    const checkLogin = async () => {
+      const response = await isLogged();
+      setUserLogged(response);
+    };
 
-  /* async function makeRedirect() {
-    const isFirstTime = await isInitialized();
-    // console.log('AsyncStorage isInitialized :: ', isInitialLlogin);
-    return isFirstTime;
-  }
-  const hasInitialBalance = makeRedirect(); */
+    checkLogin();
+  }, []);
 
-  const Routes = CreateRoute(isLogged);
+  // @ts-ignore
+  const Routes = CreateRoute(userLogged);
 
   return (
     <SafeAreaView style={styles.container}>

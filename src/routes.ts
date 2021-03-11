@@ -27,7 +27,6 @@ export default (isLogged: boolean) =>
           },
           {
             initialRouteName: 'Loading',
-            backBehavior: 'history',
           }
         ),
       },

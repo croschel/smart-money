@@ -14,6 +14,7 @@ import {
 } from 'react-navigation';
 // @ts-ignore
 import Logo from '~/assets/logo-money-huge.png';
+import { clientRegister } from '~/services/Auth';
 import colors from '~/styles/colors';
 import styles from './styles';
 
@@ -28,6 +29,24 @@ const SignUp = (props: SignUpProps) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
+
+  const onSubmit = async () => {
+    if (loading === false) {
+      setLoading(true);
+      const data = {
+        email,
+        password,
+        name,
+      };
+      const { registerSuccess } = await clientRegister(data);
+      console.log('Register :: ', registerSuccess);
+      if (registerSuccess) {
+        navigation.navigate('SignIn');
+      } else {
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -65,9 +84,9 @@ const SignUp = (props: SignUpProps) => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => {}} style={styles.signInButton}>
+        <TouchableOpacity onPress={onSubmit} style={styles.signInButton}>
           <Text style={styles.signInTextButton}>
-            {loading ? 'Carregando' : 'Entrar'}
+            {loading ? 'Carregando' : 'Criar conta'}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
