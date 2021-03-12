@@ -8,10 +8,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {
+  NavigationActions,
   NavigationParams,
   NavigationScreenProp,
+  NavigationStackAction,
   NavigationState,
+  StackActions,
 } from 'react-navigation';
+import {
+  NavigationStackState,
+  StackNavigationProp,
+} from 'react-navigation-stack/lib/typescript/src/vendor/types';
 // @ts-ignore
 import Logo from '~/assets/logo-money-huge.png';
 import { clientRegister } from '~/services/Auth';
@@ -19,7 +26,7 @@ import colors from '~/styles/colors';
 import styles from './styles';
 
 interface SignUpProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationScreenProp<NavigationStackAction, NavigationStackState>;
 }
 
 const SignUp = (props: SignUpProps) => {
@@ -41,7 +48,12 @@ const SignUp = (props: SignUpProps) => {
       const { registerSuccess } = await clientRegister(data);
       console.log('Register :: ', registerSuccess);
       if (registerSuccess) {
-        navigation.navigate('SignIn');
+        navigation.dispatch(
+          StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'SignIn' })],
+          })
+        );
       } else {
         setLoading(false);
       }

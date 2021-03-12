@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, ActivityIndicator } from 'react-native';
+import { NavigationActions, StackActions } from 'react-navigation';
 import { isInitialized } from '~/services/Welcome';
 import colors from '~/styles/colors';
 
@@ -14,9 +15,19 @@ const Loading = (props) => {
       // console.log('AsyncStorage isInitialized :: ', isInitialLlogin);
 
       if (isInitialLlogin === true) {
-        navigation.navigate('Main');
+        navigation.dispatch(
+          StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'Main' })],
+          })
+        );
       } else {
-        navigation.navigate('Welcome');
+        navigation.dispatch(
+          StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'Welcome' })],
+          })
+        );
       }
     }
     makeRedirect();

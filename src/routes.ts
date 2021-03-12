@@ -7,19 +7,23 @@ import Report from './pages/Report';
 import InitBalance from './pages/InitBalance';
 import Loading from './pages/Loading';
 import Welcome from './pages/Welcome';
+import { createStackNavigator } from 'react-navigation-stack';
 
 export default (isLogged: boolean) =>
   createAppContainer(
     createSwitchNavigator(
       {
-        Sign: createSwitchNavigator(
+        Sign: createStackNavigator(
           {
             SignIn,
             SignUp,
           },
-          { backBehavior: 'history' }
+          {
+            initialRouteName: 'SignIn',
+            headerMode: 'none',
+          }
         ),
-        App: createSwitchNavigator(
+        App: createStackNavigator(
           {
             Loading,
             Welcome,
@@ -30,7 +34,7 @@ export default (isLogged: boolean) =>
           },
           {
             initialRouteName: 'Loading',
-            backBehavior: 'history',
+            headerMode: 'none',
           }
         ),
       },

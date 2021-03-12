@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Image } from 'react-native';
+import { NavigationActions, StackActions } from 'react-navigation';
 import { styles } from './styles';
 import InitBalanceInput from './InitBalanceInput';
 import Logo from '~/assets/logo-money.png';
@@ -23,7 +24,12 @@ const InitBalance = (props) => {
       isInit: true,
     });
     setInitialized();
-    navigation.navigate('Main');
+    navigation.dispatch(
+      StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+      })
+    );
   };
 
   return (
