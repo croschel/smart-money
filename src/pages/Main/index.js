@@ -15,19 +15,31 @@ import BalancePanel from '~/components/BalancePanel';
 import EntrySummary from '~/components/EntrySummary';
 import EntryList from '~/components/EntryList';
 import styles from './styles';
+import LogoutButton from '~/components/LogoutButton';
+import { cleanUserAuth } from '~/services/Auth';
 
-const Main = ({ navigation }) => (
-  <SafeAreaView style={styles.container}>
-    <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')} />
-    <ScrollView>
-      <EntrySummary onPressActionButton={() => navigation.navigate('Report')} />
-      <EntryList
-        days={7}
-        onEntryPress={(entry) => navigation.navigate('NewEntry', { entry })}
-        onPressActionButton={() => navigation.navigate('Report')}
-      />
-    </ScrollView>
-  </SafeAreaView>
-);
-
+const Main = ({ navigation }) => {
+  const handleLogout = async () => {
+    await cleanUserAuth();
+    navigation.navigate('Sign');
+  };
+  return (
+    <>
+      <SafeAreaView style={styles.container}>
+        <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')} />
+        <ScrollView>
+          <EntrySummary
+            onPressActionButton={() => navigation.navigate('Report')}
+          />
+          <EntryList
+            days={7}
+            onEntryPress={(entry) => navigation.navigate('NewEntry', { entry })}
+            onPressActionButton={() => navigation.navigate('Report')}
+          />
+        </ScrollView>
+      </SafeAreaView>
+      <LogoutButton position="topRight" onPress={handleLogout} />
+    </>
+  );
+};
 export default Main;

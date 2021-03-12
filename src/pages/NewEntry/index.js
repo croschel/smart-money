@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
+import { NavigationActions, StackActions } from 'react-navigation';
 import BalanceLabel from '~/components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import NewEntryCategory from './NewEntryCategory';
@@ -53,10 +54,15 @@ const NewEntry = ({ navigation }) => {
   };
 
   const onClose = () => {
-    navigation.goBack();
+    navigation.dispatch(
+      StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+      })
+    );
   };
 
-  const onSave = () => {
+  const onSave = async () => {
     const value = {
       amount: parseFloat(amount),
       address: addressState,
@@ -67,15 +73,15 @@ const NewEntry = ({ navigation }) => {
       photo,
     };
     if (isEdit) {
-      updateEntry(value, entry.id);
+      await updateEntry(value, entry.id);
     } else {
-      saveEntry(value);
+      await saveEntry(value);
     }
     onClose();
   };
 
-  const onDelete = () => {
-    deleteEntry(entry);
+  const onDelete = async () => {
+    await deleteEntry(entry);
     onClose();
   };
   return (

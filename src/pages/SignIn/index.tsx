@@ -8,12 +8,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {
+  NavigationActions,
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
+  StackActions,
 } from 'react-navigation';
 // @ts-ignore
 import Logo from '~/assets/logo-money-huge.png';
+import { clientLogin } from '~/services/Auth';
+import { isInitialized } from '~/services/Welcome';
 import colors from '~/styles/colors';
 import styles from './styles';
 
@@ -27,6 +31,22 @@ const SignIn = (props: SignInProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const onSubmit = async () => {
+    if (loading === false) {
+      setLoading(true);
+      const data = {
+        email,
+        password,
+      };
+      const { loginSuccess } = await clientLogin(data);
+      if (loginSuccess) {
+        navigation.navigate('Loading');
+      } else {
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -55,7 +75,11 @@ const SignIn = (props: SignInProps) => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => {}} style={styles.signInButton}>
+        <TouchableOpacity
+          disabled={loading ? true : false}
+          onPress={onSubmit}
+          style={styles.signInButton}
+        >
           <Text style={styles.signInTextButton}>
             {loading ? 'Carregando' : 'Entrar'}
           </Text>

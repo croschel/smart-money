@@ -8,6 +8,10 @@ interface signUpData {
   password: string;
   name: string;
 }
+interface signInData {
+  email: string;
+  password: string;
+}
 
 export const isLogged = async () => {
   const userStatus = await getUserAuth();
@@ -36,13 +40,25 @@ export const clientRegister = async (data: signUpData) => {
       password
     );
     const { uid } = userInfo.user;
-    setUserAuth(uid);
     await firestore().collection('users').doc(uid).set({
       name,
     });
     return { registerSuccess: true };
   } catch (error) {
     Alert.alert('Erro ao criar um usuário!', error.message);
-    return { registerMessage: false };
+    return { registerSucess: false };
+  }
+};
+
+export const clientLogin = async (data: signInData) => {
+  const { email, password } = data;
+  try {
+    const userInfo = await auth().signInWithEmailAndPassword(email, password);
+    const { uid } = userInfo.user;
+    setUserAuth(uid);
+    return { loginSuccess: true };
+  } catch (error) {
+    Alert.alert('Login ou senha incorretos');
+    return { loginSuccess: false };
   }
 };

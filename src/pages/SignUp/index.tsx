@@ -46,7 +46,6 @@ const SignUp = (props: SignUpProps) => {
         name,
       };
       const { registerSuccess } = await clientRegister(data);
-      console.log('Register :: ', registerSuccess);
       if (registerSuccess) {
         navigation.dispatch(
           StackActions.reset({
@@ -96,7 +95,11 @@ const SignUp = (props: SignUpProps) => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={onSubmit} style={styles.signInButton}>
+        <TouchableOpacity
+          disabled={loading ? true : false}
+          onPress={onSubmit}
+          style={styles.signInButton}
+        >
           <Text style={styles.signInTextButton}>
             {loading ? 'Carregando' : 'Criar conta'}
           </Text>

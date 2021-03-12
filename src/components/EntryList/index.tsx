@@ -16,7 +16,7 @@ interface EntryListItemProps {
 const EntryList = (props: EntryListItemProps) => {
   // eslint-disable-next-line object-curly-newline
   const { onEntryPress, onPressActionButton, days = 7, category } = props;
-  const [entries] = useEntries(days, category);
+  const [entries, , ,] = useEntries(days, category);
 
   const checkBallFirstPosition = (index: number) => {
     if (index === 0) {

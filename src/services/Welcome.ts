@@ -6,6 +6,7 @@ export const isInitialized = async () => {
   const uid = await getUserAuth();
   if (uid) {
     const userInfo = await firestore().collection('users').doc(uid).get();
+    // @ts-ignore
     openningBalance = userInfo.data().openningBalance;
   }
 
