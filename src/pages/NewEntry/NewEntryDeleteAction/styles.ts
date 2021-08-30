@@ -1,7 +1,7 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '~/styles/colors';
 
-export default styles = StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.asphalt,
     width: 60,
@@ -12,3 +12,5 @@ export default styles = StyleSheet.create({
     margin: 2,
   },
 });
+
+export default styles;

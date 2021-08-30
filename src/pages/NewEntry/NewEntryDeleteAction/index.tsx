@@ -1,13 +1,20 @@
 import React from 'react';
 import { View, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { EntryObject } from '~/../declarations';
 
 import colors from '~/styles/colors';
 import styles from './styles';
 
-const NewEntryDeleteAction = (props) => {
-  const { onOkPress, entry } = props;
+interface NewEntryDeleteActionProps {
+  onOkPress: () => void;
+  entry: EntryObject;
+}
 
+const NewEntryDeleteAction = ({
+  onOkPress,
+  entry,
+}: NewEntryDeleteActionProps) => {
   const onDelete = () => {
     Alert.alert(
       'Apagar?',

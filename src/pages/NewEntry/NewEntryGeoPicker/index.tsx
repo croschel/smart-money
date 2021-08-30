@@ -6,9 +6,19 @@ import Geocoder from 'react-native-geocoding';
 import { API_KEY } from '@env';
 import ButtonIcon from '~/components/Core/ButtonIcon';
 
-const NewEntryGeoPicker = (props) => {
-  const { address, onChange } = props;
-  const getLocation = (latitude, longitude) => {
+type OnChengeArgs = {
+  latitude: number | null;
+  longitude: number | null;
+  address: string;
+};
+
+interface NewEntryGeoPickerProps {
+  address: string;
+  onChange: ({ latitude, longitude, address }: OnChengeArgs) => void;
+}
+
+const NewEntryGeoPicker = ({ address, onChange }: NewEntryGeoPickerProps) => {
+  const getLocation = (latitude: number, longitude: number) => {
     // remember to isolate api_key on env before push this branch
     Geocoder.init(API_KEY);
     Geocoder.from({ latitude, longitude })

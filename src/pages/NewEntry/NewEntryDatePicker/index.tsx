@@ -1,17 +1,22 @@
+import { DateTimePickerResult } from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import ButtonIcon from '~/components/Core/ButtonIcon';
 
-const NewEntryDatePicker = (props) => {
-  const { value, onChange } = props;
+interface NewEntryDatePickerProps {
+  value: string;
+  onChange: (data: DateTimePickerResult) => void;
+}
+
+const NewEntryDatePicker = ({ value, onChange }: NewEntryDatePickerProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const onCancel = () => {
     setModalVisible(false);
   };
 
-  const onChangeValue = (date) => {
+  const onChangeValue = (date: unknown) => {
     onChange(date);
     onCancel();
   };

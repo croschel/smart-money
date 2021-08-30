@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import colors from '~/styles/colors';
 
-export default styles = StyleSheet.create({
+const styles = StyleSheet.create({
   pickerButton: {
     backgroundColor: colors.asphalt,
     borderRadius: 16,
@@ -15,3 +15,5 @@ export default styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+export default styles;

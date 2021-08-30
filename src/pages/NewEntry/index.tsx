@@ -15,8 +15,9 @@ import {
 } from '~/components/Core/ActionFooter';
 import useEntries from '~/hooks/useEntries';
 import styles from './styles';
+import { NavigationStackScreenProps } from 'react-navigation-stack';
 
-const NewEntry = ({ navigation }) => {
+const NewEntry = ({ navigation }: NavigationStackScreenProps) => {
   const [, saveEntry, updateEntry, deleteEntry] = useEntries();
 
   const entry = navigation.getParam('entry', {

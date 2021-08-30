@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { CategoryObject } from '~/../declarations';
 
 import CategoryModal from '~/components/CategoryModal';
 import styles from './styles';
 
-const NewEntryCategory = (props) => {
-  const { debit, category, onChangeCategory } = props;
+interface NewEntryCategoryProps {
+  debit: boolean;
+  category: CategoryObject;
+  onChangeCategory: (item: CategoryObject) => void;
+}
 
+const NewEntryCategory = ({
+  debit,
+  category,
+  onChangeCategory,
+}: NewEntryCategoryProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const onCategoryPress = (item) => {
+  const onCategoryPress = (item: CategoryObject) => {
     onChangeCategory(item);
     setModalVisible(false);
   };

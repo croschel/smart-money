@@ -7,7 +7,7 @@ import { styles } from './styles';
 interface InputMoneyProps {
   value: string;
   onChangeValue: (res: number) => void;
-  startWithDebt: boolean;
+  startWithDebt?: boolean;
   onChangeDebit?: (res: boolean) => void;
 }
 

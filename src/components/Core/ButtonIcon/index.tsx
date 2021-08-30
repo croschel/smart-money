@@ -7,7 +7,7 @@ import styles from './styles';
 
 interface ButtonIconProps {
   onButtonPress: () => void;
-  activated: any;
+  activated?: any;
   icon: string;
 }
 

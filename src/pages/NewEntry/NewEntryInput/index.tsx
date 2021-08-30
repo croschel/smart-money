@@ -1,9 +1,17 @@
 import React from 'react';
 import InputMoney from '~/components/Core/InputMoney';
 
-const NewEntryInput = (props) => {
-  const { value, onChangeValue, onChangeDebit } = props;
+interface NewEntryInputProps {
+  value: string;
+  onChangeValue: () => void;
+  onChangeDebit: () => void;
+}
 
+const NewEntryInput = ({
+  value,
+  onChangeValue,
+  onChangeDebit,
+}: NewEntryInputProps) => {
   return (
     <InputMoney
       value={value}

@@ -3,15 +3,22 @@ import { View } from 'react-native';
 import ButtonIcon from '~/components/Core/ButtonIcon';
 import ModalCameraPicker from './ModalCameraPicker';
 
-const NewEntryCameraPicker = (props) => {
-  const { photo, onChangePhoto } = props;
+interface NewEntryCameraPickerProps {
+  photo: string;
+  onChangePhoto: (photo: string | null) => void;
+}
+
+const NewEntryCameraPicker = ({
+  photo,
+  onChangePhoto,
+}: NewEntryCameraPickerProps) => {
   const [showModal, setShowModal] = useState(false);
 
   const onCloseModal = () => {
     setShowModal(false);
   };
 
-  const onChangePhotoPress = (newPhoto) => {
+  const onChangePhotoPress = (newPhoto: null | string) => {
     onChangePhoto(newPhoto);
     onCloseModal();
   };
