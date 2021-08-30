@@ -17,8 +17,9 @@ import EntryList from '~/components/EntryList';
 import styles from './styles';
 import LogoutButton from '~/components/LogoutButton';
 import { cleanUserAuth } from '~/services/Auth';
+import { NavigationStackScreenProps } from 'react-navigation-stack';
 
-const Main = ({ navigation }) => {
+const Main = ({ navigation }: NavigationStackScreenProps) => {
   const handleLogout = async () => {
     await cleanUserAuth();
     navigation.navigate('Sign');

@@ -19,9 +19,9 @@ import {
 import colors from '~/styles/colors';
 import styles from './styles';
 import { formatSingleNumber } from '~/util';
+import { NavigationStackScreenProps } from 'react-navigation-stack';
 
-const Report = (props) => {
-  const { navigation } = props;
+const Report = ({ navigation }: NavigationStackScreenProps) => {
   const [showRelativeDaysModal, setShowRelativeDaysModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [relativeDays, setRelativeDays] = useState(7);
@@ -34,7 +34,12 @@ const Report = (props) => {
     setShowCategoryModal(false);
   };
 
-  const onSelectCategory = (item) => {
+  type ItemForCategory = {
+    id: null | string;
+    name: null | string;
+  };
+
+  const onSelectCategory = (item: ItemForCategory) => {
     setCategory(item);
     onCategoryCloseModal();
   };
@@ -43,7 +48,7 @@ const Report = (props) => {
     setShowRelativeDaysModal(false);
   };
 
-  const onRelativeDaysPress = (item) => {
+  const onRelativeDaysPress = (item: ItemForCategory) => {
     setRelativeDays(item);
     onRelativeDaysClose();
   };

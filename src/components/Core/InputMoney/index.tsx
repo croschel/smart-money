@@ -8,7 +8,7 @@ interface InputMoneyProps {
   value: string;
   onChangeValue: (res: number) => void;
   startWithDebt: boolean;
-  onChangeDebit: (res: boolean) => void;
+  onChangeDebit?: (res: boolean) => void;
 }
 
 const InputMoney = (props: InputMoneyProps) => {

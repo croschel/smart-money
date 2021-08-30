@@ -10,7 +10,7 @@ interface EntryListItemProps {
   onEntryPress: (entry: EntryObject) => void;
   onPressActionButton: () => void;
   days: number;
-  category: CategoryObject;
+  category?: CategoryObject;
 }
 
 const EntryList = (props: EntryListItemProps) => {

@@ -11,9 +11,9 @@ import {
 import { saveEntry } from '~/services/Entries';
 import useCategories from '~/hooks/useCategories';
 import { setInitialized } from '~/services/Welcome';
+import { NavigationStackScreenProps } from 'react-navigation-stack';
 
-const InitBalance = (props) => {
-  const { navigation } = props;
+const InitBalance = ({ navigation }: NavigationStackScreenProps) => {
   const [amount, setAmount] = useState(0);
   const [, , , initCategories] = useCategories();
 
@@ -38,7 +38,7 @@ const InitBalance = (props) => {
         <Image source={Logo} />
       </View>
 
-      <InitBalanceInput amount={amount} onChangeValue={setAmount} />
+      <InitBalanceInput amount={String(amount)} onChangeValue={setAmount} />
 
       <ActionFooter>
         <ActionPrimaryButton

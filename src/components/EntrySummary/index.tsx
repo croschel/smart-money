@@ -7,8 +7,8 @@ import useBalanceSumByCategory from '~/hooks/useBalanceSumbyCategory';
 import styles from './styles';
 
 interface EntrySummaryProps {
-  days: number;
-  onPressActionButton: () => void;
+  days?: number;
+  onPressActionButton?: () => void;
 }
 
 const EntrySummary = (props: EntrySummaryProps) => {
